@@ -5,12 +5,20 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport')
+const multer = require('multer');
+var middleware = require('middleware');
 
 require('dotenv').config();
 
-var indexRouter = require('./routes/index');
-var instagramRouter = require('./routes/instagram');
+
 require('./config/passport');
+
+var indexRouter = require('./routes/index');
+var uploadRouter = require('./routes/upload');
+var feedRouter = require('./routes/feed');
+var likesRouter = require('./routes/likes');
+var searchRouter = require('./routes/search');
+var profileRouter = require('./routes/profile');
 
 var app = express();
 
@@ -28,10 +36,15 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
-app.use('/instagram', instagramRouter);
+app.use('/profile', profileRouter);
+app.use('/feed', feedRouter);
+app.use('/search', searchRouter);
+app.use('/likes', likesRouter);
+app.use('/upload', uploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

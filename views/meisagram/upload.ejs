@@ -1,0 +1,11 @@
+<%-include('../partials/header')%>
+
+<%= typeof msg != 'undefined' ? msg : '' %>
+    <form class="container" action="/upload" method="POST" enctype="multipart/form-data">
+        Please upload your photo: <input class="upload" name="myImage" type="file">
+        <input class="photosave" type="submit">
+    </form>
+
+
+
+<%-include('../partials/footer')%>
