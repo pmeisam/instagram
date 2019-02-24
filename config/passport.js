@@ -1,25 +1,34 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
-var Insta = require('../models/insta');
+var User = require('../models/insta');
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    // a user has logged in with OAuth...
-    Insta.findOne({'googleId': profile.id}, function(err, user){
+  }, function(accessToken, refreshToken, profile, cb) {
+        // new User({
+        //     userName: profile.displayName,
+        //     googleId: profile.id
+        // }).save().then((newUser)=> {
+        //     console.log('new user: ' + newUser)
+        // })
+    User.findOne({ 'googleId' : profile.id }, function(err, user){
+  
+        console.log('hi')
         if(err) return cb(err);
         if(user){
+            console.log('user '+user);
             return cb(null, user);
+
         }else{
-            var newUser = new Insta({
-                name: profile.displayName,
+            var newUser = new User({
+                userName: profile.displayName,
                 googleId: profile.id
             });
             newUser.save(function(err){
                 if(err) return cb(err);
+                console.log('new user ' + user);
                 return cb(null, newUser);
             })
         }
@@ -32,7 +41,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    Insta.findById(id, function(err, user) {
+    User.findById(id, function(err, user) {
       done(err, user);
     });
 });

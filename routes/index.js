@@ -6,15 +6,17 @@ var passport = require('passport');
 router.get('/', function (req, res) {
   res.render('index', { title: 'Meisagram' });
 })
+
 router.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] })
 );
-router.get('/oauth2callback',
-  passport.authenticate('google', {
-    successRedirect: '/',
-    failureRedirect: '/'
-  }
+router.get('/auth/google/callback',
+passport.authenticate('google', {
+  successRedirect: '/feed',
+  failureRedirect: '/'
+}
 ));
+// router.get('/auth/feed', (req, res)=> res.render('meisagram/feed', { title: 'Meisagram' }))
 
 router.get('/logout', function (req, res) {
   req.logout();

@@ -1,28 +1,12 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
-var commentSchema = new Schema({
-    comment: String
-}, {
-    timestamps: true
-});
-
-
-
-var photoSchema = new Schema({
-    
-    comments: [commentSchema]
-}, {
-    timestamps: true
-})
-
-var instaSchema = new Schema({
-    name: String,
-    // photos: [photosSchema],
-    googleId: String
+var userSchema = new Schema({
+    userName: String,
+    googleId: String,
+    email: String
 },{
     timestamps: true
 })
 
-module.exports = mongoose.model('Insta', instaSchema);
+module.exports = mongoose.model('User', userSchema);
