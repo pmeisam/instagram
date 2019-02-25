@@ -1,34 +1,13 @@
 <%-include('../partials/header')%>
-<div class="container">
-    <!-- <img class="posts" src="uploads/image-1551054028183.png" > -->
-    
-    <!-- <p><%= users.photos %></p> -->
-    <!-- <p><%= users %></p> -->
-    <% users.forEach(function(user) { %>
-        <% if (user.photos[0]) { %>
-            <div class="posts">
-                    <p><%=user.userName%></p>
-                    <img style="height: 55%; width:100%;"  src="<%=user.photos[0].photo %>">
-                    <p><strong><%=user.userName%>: </strong><%= user.photos[0].caption %></p>
-            </div>
-            <% } %>
-            <hr>
-    <% }) %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div style="diplay: flex; flex-direction: column-reverse;"class="container">
+    <!-- <%=image%> -->
+    <%image.forEach(function(i){%>
+        <div class="posts">
+                <p><%=i.user%></p>
+                <img style="height: 55%; width:100%;"  src="<%=i.url %>">
+                <p><strong><%=i.user%>: </strong><%= i.caption %></p>
+        </div>
+    <%});%>
 
 </div>
 

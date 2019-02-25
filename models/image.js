@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 
 var imageSchema = new Schema({
     url: String,
-    id: String,
+    caption: String,
+    user: String,
     created: {
         type: Date,
         default: new Date().getTime()
