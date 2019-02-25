@@ -1,7 +1,7 @@
 <%-include('../partials/header')%>
-<div style="diplay: flex; flex-direction: column-reverse;"class="container">
+<div class="container">
     <!-- <%=image%> -->
-    <%image.forEach(function(i){%>
+    <%image.reverse().forEach(function(i){%>
         <div class="posts">
                 <p><%=i.user%></p>
                 <img style="height: 55%; width:100%;"  src="<%=i.url %>">
@@ -10,8 +10,6 @@
     <%});%>
 
 </div>
-
-
 
 <%-include('../partials/footer')%>
         
