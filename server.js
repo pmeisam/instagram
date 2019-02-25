@@ -8,6 +8,7 @@ const multer = require('multer');
 var methodOverride = require('method-override');
 var middleware = require('middleware');
 var createError = require('http-errors');
+var Image = require('./models/image');
 
 require('dotenv').config();
 
@@ -15,6 +16,7 @@ var app = express();
 
 require('./config/database');
 require('./config/passport');
+require('./config/cloudinary');
 
 var indexRouter = require('./routes/index');
 var uploadRouter = require('./routes/upload');
@@ -51,13 +53,14 @@ app.use('/search', searchRouter);
 app.use('/likes', likesRouter);
 app.use('/upload', uploadRouter);
 
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var feedCtrl = require('../controllers/feed');
+var User = require('../models/user')
 
-router.get('/', isLoggedIn, feedCtrl.show);
+router.get('/', isLoggedIn, feedCtrl.index);
 
 
 
@@ -12,7 +13,10 @@ router.get('/', isLoggedIn, feedCtrl.show);
 
 function isLoggedIn(req, res, next) {
     if ( req.isAuthenticated() ) {
-        console.log('is logged in.')
+        User.find({}, function(err, u){
+            console.log('user: '+ u.googleId );
+
+        })
         return next();
     }
     // return next();

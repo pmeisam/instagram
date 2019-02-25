@@ -1,6 +1,35 @@
 <%-include('../partials/header')%>
 <div class="container">
-    <p>Feed</p>
+    <!-- <img class="posts" src="uploads/image-1551054028183.png" > -->
+    
+    <!-- <p><%= users.photos %></p> -->
+    <!-- <p><%= users %></p> -->
+    <% users.forEach(function(user) { %>
+        <% if (user.photos[0]) { %>
+            <div class="posts">
+                    <p><%=user.userName%></p>
+                    <img style="height: 55%; width:100%;"  src="<%=user.photos[0].photo %>">
+                    <p><strong><%=user.userName%>: </strong><%= user.photos[0].caption %></p>
+            </div>
+            <% } %>
+            <hr>
+    <% }) %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 

@@ -1,4 +1,4 @@
-var Insta = require('../models/insta');
+var User = require('../models/user');
 
 module.exports = {
     index,

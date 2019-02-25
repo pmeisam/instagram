@@ -1,4 +1,4 @@
-var Insta = require('../models/insta');
+var User = require('../models/user');
 const multer = require('multer');
 
 module.exports = {
@@ -7,5 +7,9 @@ module.exports = {
 }
 
 function show(req, res, next) {
-    res.render('meisagram/search', { title: 'Meisagram' });
+    User.find(req.query, function(err, user){
+        console.log(user)
+        res.render('meisagram/search', { title: 'Meisagram', user});
+
+    })
 }

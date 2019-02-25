@@ -1,6 +1,15 @@
 <%-include('../partials/header')%>
 <div class="container">
-    <p>profile</p>
+    <p><%= u.userName %></p>
+    <hr>
+
+    <%u.photos.forEach(function(p){%>
+    <div class="posts">
+        <p><%=p.userName%></p>
+        <img style="width: 100%; height: 55%;" src="<%=p.photo%>">
+        <p><strong><%=p.userName%>: </strong><%=p.caption%></p>
+    </div>
+    <%})%>
 
 </div>
 
