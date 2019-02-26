@@ -9,10 +9,10 @@ var imageSchema = new Schema({
     user: String,
     gId: String,
     likeNo: [String],
-    created: {
-        type: Date,
-        default: new Date().getTime()
-    }
+    comments: [{
+        user: String,
+        comment: String
+    }]
 },{
     timestamps: true
 })

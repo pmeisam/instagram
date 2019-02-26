@@ -1,17 +1,48 @@
 <%-include('../partials/header')%>
 <div class="container">
-    <p><%= u.userName %></p>
+    <p>
+        <img style="width: 60px; height: 60px; margin: -7px 10px;" src="./images/noprofile.png">
+        <%= u.userName %>
+    </p>
     <hr>
 
     <%u.photos.forEach(function(p){%>
     <div class="posts">
-        <p><%=p.userName%></p>
+
+        <p>
+            <img style="width: 40px; height: 40px; margin: -7px 10px;" src="./images/noprofile.png">
+            <%=p.userName%>
+        </p>
         <img style="width: 100%; height: 55%;" src="<%=p.photo%>">
-        <div>
-            <a href="#"></a><img style="width: 20px; height: 20px; margin: 3px 5px;" src="/images/likeBtn.jpeg"></a>
-            <a href="#"></a><img style="width: 20px; height: 25px; margin: 0 5px;" src="/images/commentBtn.jpeg"></a>
-        </div>
+        <form action="/likes/<%= p._id %>" method="POST">
+            <button type="submit" style="border-radius: 50%; margin: 10px;">&#10084;</button>
+            <span><%= p.like.length %> likes</span>
+        </form>
         <p><strong><%=p.userName%>: </strong><%=p.caption%></p>
+        <% p.comments.forEach(function(c){%>
+        <span class="comment">
+            <span style="margin-left: 5px;"><strong><%= c.user %>:</strong> <%= c.comment %></span>
+            <span class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">&#9776;</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#home">edit comment</a>
+                    <a href="#about">delete comment</a>
+                </div>
+            </span>
+        </span>
+        <% });%>
+
+
+        <form action="/likes/comments/<%= p._id %>" method="POST">
+            <div class="input-group">
+                <input name="comment" class="form-control" placeholder="comment..." aria-label="With textarea">
+                <div class="input-group-prepend">
+                    <button type="submit">&#10004;</button>
+                </div>
+            </div>
+        </form>
+
+
     </div>
     <%})%>
 

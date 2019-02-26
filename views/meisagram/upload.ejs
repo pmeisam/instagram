@@ -1,9 +1,19 @@
 <%-include('../partials/header')%>
 
 <%= typeof msg != 'undefined' ? msg : '' %>
-    <form class="container" action="/upload" method="POST" enctype="multipart/form-data">
-        Please upload your photo: <input class="upload" name="image" type="file">
-        <textarea name="caption" cols="50" rows="10" placeholder="Write a caption..."></textarea>
-        <input class="photosave" type="submit">
+    <form class="container" style="width: 50%;" action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+                <div class="custom-file">
+                  <input type="file" name="image" class="custom-file-input" id="inputGroupFile02">
+                  <label class="custom-file-label" for="inputGroupFile02">Choose image</label>
+                </div>
+              </div>
+              <div class="input-group">
+                  <textarea class="form-control" name="caption" aria-label="With textarea"></textarea>
+                  <div class="input-group-append">
+                        <input class="btn btn-outline-secondary" type="submit">
+                      </div>
+                  </div>
     </form>
 <%-include('../partials/footer')%>
+

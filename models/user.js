@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+var commentSchema = new Schema ({
+    user: String,
+    comment: String
+},{
+    timestamps: true
+})
 var likeSchema = new Schema ({
     email: String
 },{
@@ -10,7 +15,7 @@ var uploadSchema = new Schema({
     photo: String,
     userName: String,
     caption: String,
-    comment: String,
+    comments: [commentSchema],
     like:[likeSchema],
     created: {
         type: Date,

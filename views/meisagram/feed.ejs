@@ -1,21 +1,44 @@
 <%-include('../partials/header')%>
 <div class="container">
-    <!-- <%=image%> -->
     <%image.reverse().forEach(function(i){%>
     <div class="posts">
-        <p><%=i.user%></p>
-        <img style="height: 55%; width:100%;" src="<%=i.url %>">
-
-        <form action="/likes/<%= i._id %>" method="POST">
-            <button type="submit"><img style="width: 20px; height: 20px; margin: 3px 5px;" src="/images/likeBtn.jpeg"></button>
-            <button><img style="width: 20px; height: 25px; margin: 0 5px;" src="/images/commentBtn.jpeg"></button>
-        </form>
-        <p><%= i.likeNo.length %> likes</p>
-        
-        <p><strong style="font-weight: 900;"><%=i.user%>: </strong><%= i.caption %></p>
+        <div style="padding: 20px 10px;">
+            <p>
+                <img style="width: 40px; height: 40px; margin: -7px 10px;" src="./images/noprofile.png">
+                <%=i.user%>
+            </p>
+            <img class="postimage" src="<%=i.url %>">
+            <form action="/likes/<%= i._id %>" method="POST">
+                <button type="submit" style="border-radius: 50%; margin: 10px;">&#10084;</button>
+                <span><%= i.likeNo.length %> likes</span>
+            </form>
+            <p><strong><%= i.user %>: </strong><%= i.caption %></p>
+            <% i.comments.forEach(function(c){%>
+            <span class="comment">
+                <span style="margin-left: 5px;"><strong><%= c.user %>:</strong> <%= c.comment %></span>
+                <span class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">&#9776;</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <form action="/likes/delete" method="POST">
+                            <a href="#about">delete comment</a>
+                        </form>
+                        <form action="/likes/edit" method="POST">
+                            <a href="#">edit comment</a>
+                        </form>
+                    </div>
+                </span>
+            </span>
+            <% });%>
+            <form action="/likes/comments/<%= i._id %>" method="POST">
+                <div class="input-group">
+                    <input name="comment" class="form-control" placeholder="comment..." aria-label="With textarea">
+                    <div class="input-group-prepend">
+                        <button type="submit">&#10004;</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <%});%>
-
+    <% }); %>
 </div>
-
 <%-include('../partials/footer')%>

@@ -1,9 +1,39 @@
-<footer>
-        <a href="/feed"><img class="footerImg" src="/images/homeBtn.jpeg"></a>
-        <a href="/search"><img class="footerImg" src="/images/searchBtn.jpeg"></a>
-        <a href="/upload"><img class="footerImg" src="/images/addBtn.png"></a>
-        <a href="/likes"><img class="footerImg" src="/images/allLikesBtn.jpeg"></a>
-        <a href="/profile"><img class="footerImg" src="/images/instagram.png"></a>
-    </footer>
+<!-- <footer>
+    <a href="/feed"><img class="footerImg" src="/images/homeBtn.jpeg"></a>
+    <a href="/search"><img class="footerImg" src="/images/searchBtn.jpeg"></a>
+    <a href="/upload"><img class="footerImg" src="/images/addBtn.png"></a>
+    <a href="/likes"><img class="footerImg" src="/images/allLikesBtn.jpeg"></a>
+    <a href="/profile"><img class="footerImg" src="/images/instagram.png"></a>
+</footer> -->
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+    }
+    function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 </body>
+
 </html>
