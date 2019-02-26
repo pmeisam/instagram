@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
 })
 
 router.get('/auth/google',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] })
+  passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 router.get('/auth/google/callback',
 passport.authenticate('google', {
@@ -16,7 +16,6 @@ passport.authenticate('google', {
   failureRedirect: '/'
 }
 ));
-// router.get('/auth/feed', (req, res)=> res.render('meisagram/feed', { title: 'Meisagram' }))
 
 router.get('/logout', function (req, res) {
   req.logout();

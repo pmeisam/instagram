@@ -5,6 +5,7 @@ font-family: 'Satisfy', cursive;
 font-family: 'Cookie', cursive; */
 html {
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -115,7 +116,7 @@ footer {
   width: 130px;
 }
 .posts{
-  
+  width: 100%;
   text-align: left;
   display: block;
 }

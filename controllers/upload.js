@@ -12,7 +12,8 @@ function create(req, res) {
     image.url = req.file.url;
     image.caption = req.body.caption;
     image.user = req.user.userName;
-    Image.create(image) // save image information in database
+    image.gId = req.user.googleId;
+    Image.create( image ); // save image information in database
         // .then(newImage => res.redirect('/feed'))
         // .catch(err => console.log(err));
 
@@ -31,6 +32,4 @@ function create(req, res) {
 function show(req, res, next) {
     res.render('meisagram/upload', { title: 'Meisagram' })
 }
-
-
 

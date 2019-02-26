@@ -10,7 +10,6 @@ router.get('/', isLoggedIn, feedCtrl.index);
 
 
 
-
 function isLoggedIn(req, res, next) {
     if ( req.isAuthenticated() ) {
         User.find({}, function(err, u){

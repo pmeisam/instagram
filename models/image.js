@@ -7,6 +7,8 @@ var imageSchema = new Schema({
     url: String,
     caption: String,
     user: String,
+    gId: String,
+    likeNo: [String],
     created: {
         type: Date,
         default: new Date().getTime()

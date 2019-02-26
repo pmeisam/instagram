@@ -3,7 +3,7 @@ var router = express.Router();
 var searchCtrl = require('../controllers/search');
 
 router.get('/', isLoggedIn, searchCtrl.show);
-
+router.get('/', isLoggedIn, searchCtrl.search);
 
 
 

@@ -3,6 +3,7 @@ var router = express.Router();
 var likesCtrl = require('../controllers/likes');
 
 router.get('/', isLoggedIn, likesCtrl.show);
+router.post('/:id', isLoggedIn, likesCtrl.liking);
 
 
 
