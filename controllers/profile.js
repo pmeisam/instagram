@@ -10,9 +10,14 @@ module.exports = {
 }
 
 function deleteComment(req, res){
+    console.log('req.params.i_id', req.params.i_id);
+    console.log('req.params.c_id', req.params.c_id);
     Images.find(req.params.i_id, function(err, image){
         image.comments.id(req.params.c_id).remove();
-        res.redirect('/feed');
+        image.save(function(err){
+            res.redirect('/profile');
+        })
+        // res.redirect('/feed');
     })
 }
 
