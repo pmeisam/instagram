@@ -6,18 +6,27 @@ module.exports = {
     show,
     addLike,
     addComment,
-    delete: deleteComment
+    delete: deleteComment,
+    destroyPost
 }
-
+function destroyPost(req, res){
+    console.log('in the right function')
+    console.log(req.params.i_id);
+    Images.findById(req.params.i_id, function(err, image){
+        image.remove();
+        image.save(function(err){
+            res.redirect('/profile');
+        })
+    })
+}
 function deleteComment(req, res){
-    console.log('req.params.i_id', req.params.i_id);
-    console.log('req.params.c_id', req.params.c_id);
-    Images.find(req.params.i_id, function(err, image){
+    // console.log('req.params.i_id', req.params.i_id);
+    // console.log('req.params.c_id', req.params.c_id);
+    Images.findById(req.params.i_id, function(err, image){
         image.comments.id(req.params.c_id).remove();
         image.save(function(err){
             res.redirect('/profile');
         })
-        // res.redirect('/feed');
     })
 }
 
@@ -68,7 +77,6 @@ function addLike(req, res, next) {
 }
 
 function show(req, res, next) {
-    console.log('Meisam:    ', req.user.userName);
     req.user.populate('photos', function (err, u) {
         res.render('meisagram/profile', { u: req.user, title: 'Meisagram' });
     })

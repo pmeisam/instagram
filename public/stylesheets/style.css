@@ -59,13 +59,12 @@ p {
   background-image: linear-gradient(to bottom left,#f04,#f059ac,#ecb7b7)!important; */
   
 }
-button {
+/* button {
   background-color: #f04!important;
   background-image: linear-gradient(to bottom left,#f04,#f059ac,#ecb7b7)!important;
   border: none;
   color: rgb(243,243,243);
-  /* width: 120px; */
-}
+} */
 .posts {
   background-color: rgb(39,41,59);
   color: #f3f3f4;
