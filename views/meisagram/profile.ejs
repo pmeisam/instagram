@@ -8,17 +8,17 @@
 
     <%u.photos.forEach(function(p){%>
     <div class="posts">
-
-        <p>
+        <div style="padding: 20px 10px;">
+        <p style=" color: white;">
             <img style="width: 40px; height: 40px; margin: -7px 10px;" src="./images/noprofile.png">
-            <%=p.userName%>
+            <%=u.userName%>
         </p>
-        <img style="width: 100%; height: 55%;" src="<%=p.photo%>">
-        <form action="/likes/<%= p._id %>" method="POST">
+        <img class="postimage" src="<%=p.url%>">
+        <form action="/profile/<%= p._id %>" method="POST">
             <button type="submit" style="border-radius: 50%; margin: 10px;">&#10084;</button>
-            <span><%= p.like.length %> likes</span>
+            <span><%= p.likes.length %> likes</span>
         </form>
-        <p><strong><%=p.userName%>: </strong><%=p.caption%></p>
+        <p><strong><%=u.userName%>: </strong><%=p.caption%></p>
         <% p.comments.forEach(function(c){%>
         <span class="comment">
             <span style="margin-left: 5px;"><strong><%= c.user %>:</strong> <%= c.comment %></span>
@@ -33,7 +33,7 @@
         <% });%>
 
 
-        <form action="/likes/comments/<%= p._id %>" method="POST">
+        <form action="/profile/comments/<%= p._id %>" method="POST">
             <div class="input-group">
                 <input name="comment" class="form-control" placeholder="comment..." aria-label="With textarea">
                 <div class="input-group-prepend">
@@ -42,7 +42,7 @@
             </div>
         </form>
 
-
+    </div>
     </div>
     <%})%>
 

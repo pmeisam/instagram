@@ -7,7 +7,7 @@ module.exports = {
 
 function index(req, res, next) {
     Images.find({},function(err, image){
-        if (err) next(err);
+        if (err) redirect("/")
         res.render('meisagram/feed', { title: 'Meisagram' , image });
     })
 }

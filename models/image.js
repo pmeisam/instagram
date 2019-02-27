@@ -8,7 +8,7 @@ var imageSchema = new Schema({
     caption: String,
     user: String,
     gId: String,
-    likeNo: [String],
+    likes: [],
     comments: [{
         user: String,
         comment: String
@@ -17,4 +17,4 @@ var imageSchema = new Schema({
     timestamps: true
 })
 
-module.exports = mongoose.model('Image', imageSchema);
+module.exports = mongoose.model('Image', imageSchema);  

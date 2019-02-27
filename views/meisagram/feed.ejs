@@ -10,7 +10,7 @@
             <img class="postimage" src="<%=i.url %>">
             <form action="/likes/<%= i._id %>" method="POST">
                 <button type="submit" style="border-radius: 50%; margin: 10px;">&#10084;</button>
-                <span><%= i.likeNo.length %> likes</span>
+                <span><%= i.likes.length %> likes</span>
             </form>
             <p><strong><%= i.user %>: </strong><%= i.caption %></p>
             <% i.comments.forEach(function(c){%>
@@ -19,11 +19,11 @@
                 <span class="dropdown">
                     <button onclick="myFunction()" class="dropbtn">&#9776;</button>
                     <div id="myDropdown" class="dropdown-content">
-                        <form action="/likes/delete" method="POST">
-                            <a href="#about">delete comment</a>
+                        <form action="/likes/<%= i._id %>/<%= c._id %>?_method=DELETE" method="POST">
+                            <input class="btn btn-outline-danger" type="submit" value="Delete">
                         </form>
                         <form action="/likes/edit" method="POST">
-                            <a href="#">edit comment</a>
+                            <input class="btn btn-outline-danger"type="submit" value="Edit">
                         </form>
                     </div>
                 </span>

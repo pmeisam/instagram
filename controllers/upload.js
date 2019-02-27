@@ -13,20 +13,20 @@ function create(req, res) {
     image.caption = req.body.caption;
     image.user = req.user.userName;
     image.gId = req.user.googleId;
-    Image.create( image ); // save image information in database
-        // .then(newImage => res.redirect('/feed'))
-        // .catch(err => console.log(err));
-
-    req.user.photos.unshift({
-        caption: req.body.caption,
-        photo: req.file.url,
-        userName: req.user.userName,
-        created: new Date().getTime()
+    Image.create( image , function(err, image){
+        req.user.photos.unshift(
+            image
+            // caption: req.body.caption,
+            // photo: req.file.url,
+            // userName: req.user.userName,
+            // images: image.create(image)
+        );
+        req.user.save(function (err) {
+            res.redirect(`/feed`);
+        });
     });
 
-    req.user.save(function (err) {
-        res.redirect(`/feed`);
-    })
+    
 }
 
 function show(req, res, next) {

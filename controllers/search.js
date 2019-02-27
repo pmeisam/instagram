@@ -7,20 +7,20 @@ module.exports = {
 
 }
 function search(req, res, next) {
-    var userName = req.query.userName;
+    // var userName = req.query.userName;
     
-    let modelQuery = req.query.userName ? {userName: new RegExp(req.query.userName, 'i')} : {};
-    if (!userName) res.redirect('/search');
-    console.log('search data ', searchData);
-    console.log(userName)
-    User.find(modelQuery, function (err, users) {
-        console.log(users)
-        res.redirect('/search', 
-        {
-            users
-        });
+    // let modelQuery = req.query.userName ? {userName: new RegExp(req.query.userName, 'i')} : {};
+    // if (!userName) res.redirect('/search');
+    // console.log('search data ', searchData);
+    // console.log(userName)
+    // User.find(modelQuery, function (err, users) {
+    //     console.log(users)
+    //     res.redirect('/search', 
+    //     {
+    //         users
+    //     });
 
-    })
+    // })
 }
 
 function show(req, res, next) {

@@ -5,6 +5,7 @@ var likesCtrl = require('../controllers/likes');
 router.get('/', isLoggedIn, likesCtrl.show);
 router.post('/:id', isLoggedIn, likesCtrl.addLike);
 router.post('/comments/:id', isLoggedIn, likesCtrl.addComment);
+router.delete('/:id/:id', isLoggedIn, likesCtrl.delete);
 
 
 
