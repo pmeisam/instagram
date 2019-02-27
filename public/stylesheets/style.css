@@ -6,16 +6,48 @@ font-family: 'Cookie', cursive; */
 html {
   height: 100%;
   width: 100%;
-  border-top: 2px solid #ba54f5;
-  
+}
+.pstinside {
+  padding: 20px 10px;
+}
+strong {
+  font-weight: 900;
+}
+span {
+  font-size: 13px;
 }
 p {
-  font-size: 10px;
+  font-size: 13px;
+}
+.likebtn {
+  border-radius: 50%; 
+  margin: 10px;
+}
+.uploadbar{
+  width: 50%;
+}
+.profilepic {
+  width: 60px; 
+  height: 60px; 
+  margin: -7px 10px;
+}
+.profileimg {
+  width: 40px;
+  height: 40px;
+  margin: -7px 10px;
 }
 .postimage{
   height: 35%;
   width:100%; 
   border-radius: 10px;
+}
+.profile {
+  padding: 30px;
+  background-color: white;
+  border-radius: 5%;
+  color: rgb(29,30,45);
+  display: flex;
+  justify-content: space-between;
 }
 .comment {
   border-radius: 4px;
@@ -23,12 +55,12 @@ p {
   justify-content: space-between;
   margin: 10px 0;
   background-color: #ba54f5!important;
-  background-image: linear-gradient(to bottom left,#f04,#5e148c,#f07fdf)!important;
+  background-image: linear-gradient(to bottom left,#f04,#f059ac,#ecb7b7)!important;
   
 }
 button {
-  background-color: #ba54f5!important;
-  background-image: linear-gradient(to bottom left,#e14eca,#ba54f5,#e14eca)!important;
+  background-color: #f04!important;
+  background-image: linear-gradient(to bottom left,#f04,#f059ac,#ecb7b7)!important;
   border: none;
   color: rgb(243,243,243);
   /* width: 120px; */
@@ -36,12 +68,9 @@ button {
 .posts {
   background-color: rgb(39,41,59);
   color: #f3f3f4;
-  margin: 55px 0;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  
- 
+  width: 100%;
+  margin: 10% 0;
+  border-radius: 3%;
 }
 body {
   background-color: rgb(29,30,45);
@@ -50,18 +79,30 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
+  border-top: 2px solid #f04;
 }
 .loginmain {
   background-color: rgb(29,30,45);
   color: #ba54f5;
 }
+
+.logo {
+  font-size: 8.5rem;
+  font-family: 'Satisfy', cursive;
+}
 .login {
-  background-color: #ba54f5!important;
-  background-image: linear-gradient(to bottom left,#f04,#ba54f5,#e14eca)!important;
+  background-color: #f04!important;
+  background-image: linear-gradient(to bottom left,#f04,#f059ac,#ecb7b7)!important;
   color: rgb(243,243,244);
   height: 100%;
-  clip-path: polygon(0 100%,0 1px, 100% 1%,0 100%);
-  -webkit-clip-path: polygon(0 100%,0 1px, 100% 1%,0 100%);
+  clip-path: polygon(0 100%,0 1px, 100% 16%,0 100%);
+  -webkit-clip-path: polygon(0 100%,0 1px, 100% 16%,0 100%);
+}
+.signinbtn {
+  width: 130px;
+}
+.logintext {
+  margin: 25% 10%;
 }
 .sidenav {
   height: 100%;
@@ -145,13 +186,20 @@ body {
       font-size: 18px;
   }
 }
-@media only screen and (min-width: 200px) {
+@media only screen and (min-width: 600px) {
   p {
     font-size: 15px;
   }
   .postimage{
-    height: 35%;
-    width:55%; 
+    width: 56%; 
     border-radius: 10px;
+    margin: 0 22%;
+  }
+  .logo {
+    font-size: 5.5rem;
+    font-family: 'Satisfy', cursive;
+  }
+  .logintext {
+    margin: 12% 10%;
   }
 }

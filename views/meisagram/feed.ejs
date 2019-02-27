@@ -2,30 +2,24 @@
 <div class="container">
     <%image.reverse().forEach(function(i){%>
     <div class="posts">
-        <div style="padding: 20px 10px;">
+        <div class="pstinside">
             <p>
-                <img style="width: 40px; height: 40px; margin: -7px 10px;" src="./images/noprofile.png">
+                <img class="profileimg" src="./images/noprofile.png">
                 <%=i.user%>
             </p>
             <img class="postimage" src="<%=i.url %>">
             <form action="/likes/<%= i._id %>" method="POST">
-                <button type="submit" style="border-radius: 50%; margin: 10px;">&#10084;</button>
+                <button class="likebtn" type="submit">&#10084;</button>
                 <span><%= i.likes.length %> likes</span>
             </form>
             <p><strong><%= i.user %>: </strong><%= i.caption %></p>
             <% i.comments.forEach(function(c){%>
             <span class="comment">
-                <span style="margin-left: 5px;"><strong><%= c.user %>:</strong> <%= c.comment %></span>
-                <span class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">&#9776;</button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <form action="/likes/<%= i._id %>/<%= c._id %>?_method=DELETE" method="POST">
-                            <input class="btn btn-outline-danger" type="submit" value="Delete">
+                <span><strong><%= c.user %>:</strong> <%= c.comment %></span>
+                <span>
+                        <form action="/likes/<%= i._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
+                            <input type="submit" value="Delete">
                         </form>
-                        <form action="/likes/edit" method="POST">
-                            <input class="btn btn-outline-danger"type="submit" value="Edit">
-                        </form>
-                    </div>
                 </span>
             </span>
             <% });%>
@@ -33,7 +27,7 @@
                 <div class="input-group">
                     <input name="comment" class="form-control" placeholder="comment..." aria-label="With textarea">
                     <div class="input-group-prepend">
-                        <button type="submit">&#10004;</button>
+                        <button type="submit">&#10000;</button>
                     </div>
                 </div>
             </form>

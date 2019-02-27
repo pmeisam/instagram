@@ -6,9 +6,9 @@ var session = require('express-session');
 var passport = require('passport');
 const multer = require('multer');
 var methodOverride = require('method-override');
+const bodyParser = require('body-parser');
 var middleware = require('middleware');
 var createError = require('http-errors');
-var Image = require('./models/image');
 
 require('dotenv').config();
 
@@ -32,6 +32,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(methodOverride('_method'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.json());

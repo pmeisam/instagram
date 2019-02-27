@@ -1,35 +1,35 @@
 <%-include('../partials/header')%>
 <div class="container">
-    <p>
-        <img style="width: 60px; height: 60px; margin: -7px 10px;" src="./images/noprofile.png">
-        <%= u.userName %>
+    <p class="profile">
+        <img class="profilepic" src="./images/noprofile.png">
+        <%= u.userName %><br>
+        <%= u.email %>
     </p>
     <hr>
 
     <%u.photos.forEach(function(p){%>
     <div class="posts">
-        <div style="padding: 20px 10px;">
-        <p style=" color: white;">
-            <img style="width: 40px; height: 40px; margin: -7px 10px;" src="./images/noprofile.png">
+        <div class="pstinside">
+        <p>
+            <img class="profileimg" src="./images/noprofile.png">
             <%=u.userName%>
         </p>
         <img class="postimage" src="<%=p.url%>">
         <form action="/profile/<%= p._id %>" method="POST">
-            <button type="submit" style="border-radius: 50%; margin: 10px;">&#10084;</button>
+            <button type="submit" class="likebtn">&#10084;</button>
             <span><%= p.likes.length %> likes</span>
         </form>
         <p><strong><%=u.userName%>: </strong><%=p.caption%></p>
         <% p.comments.forEach(function(c){%>
+
         <span class="comment">
-            <span style="margin-left: 5px;"><strong><%= c.user %>:</strong> <%= c.comment %></span>
-            <span class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">&#9776;</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <a href="#home">edit comment</a>
-                    <a href="#about">delete comment</a>
-                </div>
+                <span><strong><%= c.user %>:</strong> <%= c.comment %></span>
+                <span>
+                        <form action="/likes/<%= p._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
+                            <input type="submit" value="Delete">
+                        </form>
+                </span>
             </span>
-        </span>
         <% });%>
 
 

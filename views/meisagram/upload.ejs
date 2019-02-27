@@ -1,7 +1,7 @@
 <%-include('../partials/header')%>
 
 <%= typeof msg != 'undefined' ? msg : '' %>
-    <form class="container" style="width: 50%;" action="/upload" method="POST" enctype="multipart/form-data">
+    <form class="container" class="uploadbar" action="/upload" method="POST" enctype="multipart/form-data">
         <div class="input-group mb-3">
                 <div class="custom-file">
                   <input type="file" name="image" class="custom-file-input" id="inputGroupFile02">
