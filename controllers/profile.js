@@ -5,8 +5,17 @@ const multer = require('multer');
 module.exports = {
     show,
     addLike,
-    addComment
+    addComment,
+    delete: deleteComment
 }
+
+function deleteComment(req, res){
+    Images.find(req.params.i_id, function(err, image){
+        image.comments.id(req.params.c_id).remove();
+        res.redirect('/feed');
+    })
+}
+
 function addComment(req, res) {
     Images.findById(req.params.id, function (err, image){
         Users.findOne({googleId: image.gId}, function(err, user){

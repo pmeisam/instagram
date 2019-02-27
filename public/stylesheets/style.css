@@ -54,8 +54,9 @@ p {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
-  background-color: #ba54f5!important;
-  background-image: linear-gradient(to bottom left,#f04,#f059ac,#ecb7b7)!important;
+  background-color: black;
+  /* background-color: #ba54f5!important;
+  background-image: linear-gradient(to bottom left,#f04,#f059ac,#ecb7b7)!important; */
   
 }
 button {
