@@ -19,9 +19,18 @@
             <div style="display: flex; justify-content: space-between;">
                 <form action="/profile/<%= p._id %>" method="POST">
                     <button type="submit" class="likebtn btn btn-outline-danger btn-sm">&#10084;</button>
-                    <span><%= p.likes.length %> like(s)</span>
+                    <%if( p.likes.length === 0 ) {%>
+                        <span></span>
+                    <%}%>
+                    <%if( p.likes.length === 1 ){ %>
+                        <span> <%=p.likes.length%> like</span>
+                        <%}%>
+                    <%if( p.likes.length > 1 ) {%>
+                        <span> <%=p.likes.length%> likes</span>
+                        <%}%>
+                    <!-- <span><%= p.likes.length %> like(s)</span> -->
                 </form>
-                <div class="dropdown likebtn">
+                <div class="btn-group dropleft likebtn">
                     <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenu2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Edit
@@ -37,7 +46,14 @@
                     </div>
                 </div>
             </div>
-            <p><strong><%=u.userName%>: </strong><%=p.caption%></p>
+            <p>
+                    <%if(p.caption.length === 0){%>
+                        <span></span>
+                    <%} else {%>
+                        <strong><%= u.userName %>: </strong><%= p.caption %>
+                    <%}%>
+                <!-- <strong><%=u.userName%>: </strong><%=p.caption%> -->
+            </p>
             <% p.comments.forEach(function(c){%>
 
             <span class="comment">

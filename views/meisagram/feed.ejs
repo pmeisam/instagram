@@ -11,27 +11,43 @@
             <img class="postimage" src="<%=i.url %>">
             <form action="/likes/<%= i._id %>" method="POST">
                 <button class="likebtn btn btn-outline-danger btn-sm" type="submit">&#9829;</button>
-                <span><%= i.likes.length %> like(s)</span>
+                <%if( i.likes.length === 0 ) {%>
+                <span></span>
+                <%}%>
+                <%if( i.likes.length === 1 ){ %>
+                <span> <%=i.likes.length%> like</span>
+                <%}%>
+                <%if( i.likes.length > 1 ) {%>
+                <span> <%=i.likes.length%> likes</span>
+                <%}%>
             </form>
-            <p><strong><%= i.user %>: </strong><%= i.caption %></p>
-            <% i.comments.forEach(function(c){%>
-            <span class="comment">
-                <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
-                <span>
+            <p>
+                <%if(i.caption.length === 0){%>
+                    <span></span>
+                <%} else {%>
+                    <strong><%= i.user %>: </strong><%= i.caption %>
+                <%}%>
+                <!-- <%= i.caption %> -->
+            </p>
+                <% i.comments.forEach(function(c){%>
+                <span class="comment">
+                    <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
+                    <span>
                         <form action="/likes/<%= i._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
                             <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete">
                         </form>
+                    </span>
                 </span>
-            </span>
-            <% });%>
-            <form action="/likes/comments/<%= i._id %>" method="POST">
-                <div class="input-group">
-                    <textarea name="comment" class="form-control" placeholder="comment..." aria-label="With textarea"></textarea>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-primary" type="submit">&#10000;</button>
+                <% });%>
+                <form action="/likes/comments/<%= i._id %>" method="POST">
+                    <div class="input-group">
+                        <textarea name="comment" class="form-control" placeholder="comment..."
+                            aria-label="With textarea"></textarea>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-primary" type="submit">&#10000;</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
         </div>
     </div>
     <% }); %>

@@ -11,15 +11,18 @@
             <input type="text" name="userName" class="form-control" placeholder="Profile Username" aria-label="Recipient's username"
                 aria-describedby="button-addon2">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
+                <button class="btn btn-outline-primary" type="submit" id="button-addon2">Submit</button>
             </div>
         </div>
     </form>
-    <form action="/editprofile/deleteuser/<%=user._id%>?_method=DELETE" method="POST">
-        <button type="submit" class="btn btn-outline-danger">Delete Profile</button>        
-    </form>
+    
 </div>
 
-
+<footer>
+        <p style="color: white;">In case you don't like our app you can delete your profile, we are sorry if you didn't like it.</p>
+        <form action="/editprofile/deleteuser/<%=user._id%>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-outline-danger">Delete Profile</button>        
+        </form>
+</footer>
 
 <%-include('../partials/footer')%>
