@@ -22,7 +22,7 @@ var indexRouter = require('./routes/index');
 var uploadRouter = require('./routes/upload');
 var feedRouter = require('./routes/feed');
 var likesRouter = require('./routes/likes');
-var searchRouter = require('./routes/search');
+var editprofileRouter = require('./routes/editprofile');
 var profileRouter = require('./routes/profile');
 
 
@@ -51,7 +51,7 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/profile', profileRouter);
 app.use('/feed', feedRouter);
-app.use('/search', searchRouter);
+app.use('/editprofile', editprofileRouter);
 app.use('/likes', likesRouter);
 app.use('/upload', uploadRouter);
 

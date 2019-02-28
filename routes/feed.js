@@ -12,13 +12,8 @@ router.get('/', isLoggedIn, feedCtrl.index);
 
 function isLoggedIn(req, res, next) {
     if ( req.isAuthenticated() ) {
-        User.find({}, function(err, u){
-            console.log('user: '+ u.googleId );
-
-        })
         return next();
     }
-    // return next();
     else res.redirect('/auth/google');
 }
   

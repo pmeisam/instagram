@@ -11,7 +11,7 @@
             <img class="postimage" src="<%=i.url %>">
             <form action="/likes/<%= i._id %>" method="POST">
                 <button class="likebtn btn btn-outline-danger btn-sm" type="submit">&#10084;</button>
-                <span><%= i.likes.length %> likes</span>
+                <span><%= i.likes.length %> like(s)</span>
             </form>
             <p><strong><%= i.user %>: </strong><%= i.caption %></p>
             <% i.comments.forEach(function(c){%>
