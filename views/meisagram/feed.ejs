@@ -10,7 +10,7 @@
             </p>
             <img class="postimage" src="<%=i.url %>">
             <form action="/likes/<%= i._id %>" method="POST">
-                <button class="likebtn btn btn-outline-danger btn-sm" type="submit">&#10084;</button>
+                <button class="likebtn btn btn-outline-danger btn-sm" type="submit">&#9829;</button>
                 <span><%= i.likes.length %> like(s)</span>
             </form>
             <p><strong><%= i.user %>: </strong><%= i.caption %></p>
@@ -26,7 +26,7 @@
             <% });%>
             <form action="/likes/comments/<%= i._id %>" method="POST">
                 <div class="input-group">
-                    <input name="comment" class="form-control" placeholder="comment..." aria-label="With textarea">
+                    <textarea name="comment" class="form-control" placeholder="comment..." aria-label="With textarea"></textarea>
                     <div class="input-group-prepend">
                         <button class="btn btn-outline-primary" type="submit">&#10000;</button>
                     </div>

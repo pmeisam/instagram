@@ -2,9 +2,10 @@
 
 <div class="container uploadbar">
     <form action="/editprofile/update/<%=user._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
-        <div class="custom-file">
+        <div style="margin-bottom: 20px;" class="custom-file">
             <input type="file" name='image' class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
             <label class="custom-file-label" for="inputGroupFile03">Upload Profile Picture</label>
+            
         </div>
         <div class="input-group mb-3">
             <input type="text" name="userName" class="form-control" placeholder="Profile Username" aria-label="Recipient's username"
@@ -15,7 +16,7 @@
         </div>
     </form>
     <form action="/editprofile/deleteuser/<%=user._id%>?_method=DELETE" method="POST">
-        <button type="submit" class="btn btn-danger">Delete Profile</button>        
+        <button type="submit" class="btn btn-outline-danger">Delete Profile</button>        
     </form>
 </div>
 

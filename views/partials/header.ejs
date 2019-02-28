@@ -24,13 +24,42 @@
 </head>
 
 <body>
-    <span style="font-size:30px; cursor:pointer; color:#f04; margin-left: 15px; position: fixed;" onclick="openNav()">&#9776;</span>
+    
+    <!-- <span style="font-size:30px; cursor:pointer; color:#f04; margin-left: 15px; position: fixed;" onclick="openNav()">&#9776;</span>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="/feed">Feed</a>
         <a href="/upload">Post Photo</a>
-        <!-- <a href="/likes">Notifications</a> -->
         <a href="/profile">Profile</a>
-        <!-- <a href="/editprofile/">Edit Profile</a> -->
         <a href="/logout">Sign Out</a>
-    </div>
+    </div> -->
+    <div class="pos-f-t" style="position: fixed; width: 100%; border-top: solid 2px #f04; z-index: 100;">
+            <div class="collapse" id="navbarToggleExternalContent">
+              <div class="bg-dark p-4">
+                <!-- <h5 class="text-white h4">Welcome to Memesagram</h5> -->
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="/feed">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/upload">Post Photo</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Notifications</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="/logout">Sign Out</a>
+                              </li>
+                      </ul>
+                <!-- <span class="text-muted">Toggleable via the navbar brand.</span> -->
+              </div>
+            </div>
+            <nav class="navbar navbar-dark bg-dark">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </nav>
+          </div>

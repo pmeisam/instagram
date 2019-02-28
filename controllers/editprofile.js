@@ -15,20 +15,17 @@ function destroyProfile(req, res){
 }
 function update(req, res){
     User.findById(req.params.id, function(err, user){
-        console.log("req.body.image: ", req.file.image)
-        
-        user.avatar = req.file.url;
-
-        // console.log('user: ', user);
+        console.log("typeof req.file: ", typeof req.file)
+        if (typeof(req.file) === "object"){
+            user.avatar = req.file.url;
+        }
         if(req.body.userName.length >= 4){
             user.userName = req.body.userName;
         }
-        
         user.save(function(err){
-                res.render('meisagram/profile')
+                res.redirect('/profile')
             })
     });
-    res.redirect('/profile');
 }
 
 function show(req, res, next) {
