@@ -4,7 +4,7 @@ Click [here](https://memesagram.herokuapp.com/) to try it out!
 
 
 ## Description
-Memesagram is a social media platform where users can login with their Google account and upload photos, especially memes. Users can also comment, like, and updated their profiles with photos and custom usernames. In addition, users can edit or delete their comments.
+Memesagram is a social media platform where users can login with their Google account and upload photos, especially memes. Users can also comment, like, and update their profiles with photos and custom usernames. In addition, users can edit or delete their comments.
 
 
 ## Origins
