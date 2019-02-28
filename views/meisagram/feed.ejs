@@ -41,8 +41,8 @@
                 <% });%>
                 <form action="/likes/comments/<%= i._id %>" method="POST">
                     <div class="input-group">
-                        <textarea name="comment" class="form-control" placeholder="comment..."
-                            aria-label="With textarea"></textarea>
+                        <input name="comment" class="form-control" placeholder="comment..."
+                            aria-label="With textarea" autocomplete="off">
                         <div class="input-group-prepend">
                             <button class="btn btn-outline-primary" type="submit">&#10000;</button>
                         </div>
