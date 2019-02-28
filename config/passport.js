@@ -9,6 +9,7 @@ passport.use(new GoogleStrategy({
   }, function(accessToken, refreshToken, profile, cb) {
     //   console.log(profile)
     User.findOne({ 'googleId' : profile.id }, function(err, user){
+        console.log("profile: ", profile)
         if(err) return cb(err);
         if(user){
             return cb(null, user);
@@ -16,7 +17,8 @@ passport.use(new GoogleStrategy({
             var newUser = new User({
                 userName: profile.displayName,
                 googleId: profile.id,
-                email: profile.emails[0].value
+                email: profile.emails[0].value,
+                avatar: profile.photos[0].value
             });
             newUser.save(function(err){
                 if(err) return cb(err);

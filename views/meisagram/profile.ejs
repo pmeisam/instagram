@@ -1,7 +1,7 @@
 <%-include('../partials/header')%>
 <div class="container">
     <p class="profile">
-        <img class="profilepic" src="./images/noprofile.png">
+        <img class="profilepic" src="<%=u.avatar%>">
         <%= u.userName %><br>
         <%= u.email %>
     </p>
@@ -11,24 +11,24 @@
     <div class="posts">
         <div class="pstinside">
             <p>
-                <img class="profileimg" src="./images/noprofile.png">
+                <img class="profileimg" src="<%=u.avatar%>">
                 <%=u.userName%>
             </p>
             <img class="postimage" src="<%=p.url%>">
             <div style="display: flex; justify-content: space-between;">
                 <form action="/profile/<%= p._id %>" method="POST">
-                    <button type="submit" class="likebtn btn btn-outline-danger">&#10084;</button>
+                    <button type="submit" class="likebtn btn btn-outline-danger btn-sm">&#10084;</button>
                     <span><%= p.likes.length %> like(s)</span>
                 </form>
                 <div class="dropdown likebtn">
-                    <button class="btn btn-outline-info btn-sm dropdown-toggle" type="button" id="dropdownMenu2"
+                    <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenu2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Edit
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <form action="/profile/image/<%=p._id%>">
-                            <textarea name="caption" placeholder="caption"></textarea>
-                            <button class="dropdown-item" type="button">Edit Caption</button>
+                        <form action="/profile/caption/<%=p._id%>?_method=PUT" method="POST">
+                            <textarea name="caption" placeholder="caption..."></textarea>
+                            <button class="dropdown-item" type="submit">Edit Caption</button>
                         </form>
                         <form action="/profile/image/<%=p._id%>?_method=DELETE" method="POST">
                             <button class="dropdown-item" type="submit">Delete Post</button>
@@ -40,10 +40,10 @@
             <% p.comments.forEach(function(c){%>
 
             <span class="comment">
-                <span><strong><%= c.user %>:</strong> <%= c.comment %></span>
+                <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
                 <span>
                     <form action="/profile/<%= p._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
-                        <input type="submit" class="btn btn-outline-info btn-sm" value="Delete">
+                        <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete">
                     </form>
                 </span>
             </span>
@@ -54,7 +54,7 @@
                 <div class="input-group">
                     <input name="comment" class="form-control" placeholder="comment..." aria-label="With textarea">
                     <div class="input-group-prepend">
-                        <button class="btn btn-outline-info" type="submit">&#10004;</button>
+                        <button class="btn btn-outline-primary" type="submit">&#10000;</button>
                     </div>
                 </div>
             </form>

@@ -4,21 +4,22 @@
     <div class="posts">
         <div class="pstinside">
             <p>
-                <img class="profileimg" src="./images/noprofile.png">
+                <img class="profileimg" src="<%= i.avatar %>">
                 <%=i.user%>
+                <!-- <%= i.avatar %> -->
             </p>
             <img class="postimage" src="<%=i.url %>">
             <form action="/likes/<%= i._id %>" method="POST">
-                <button class="likebtn" type="submit">&#10084;</button>
+                <button class="likebtn btn btn-outline-danger btn-sm" type="submit">&#10084;</button>
                 <span><%= i.likes.length %> likes</span>
             </form>
             <p><strong><%= i.user %>: </strong><%= i.caption %></p>
             <% i.comments.forEach(function(c){%>
             <span class="comment">
-                <span><strong><%= c.user %>:</strong> <%= c.comment %></span>
+                <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
                 <span>
                         <form action="/likes/<%= i._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
-                            <input class="btn btn-outline-secondary btn-sm" type="submit" value="Delete">
+                            <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete">
                         </form>
                 </span>
             </span>
@@ -27,7 +28,7 @@
                 <div class="input-group">
                     <input name="comment" class="form-control" placeholder="comment..." aria-label="With textarea">
                     <div class="input-group-prepend">
-                        <button type="submit">&#10000;</button>
+                        <button class="btn btn-outline-primary" type="submit">&#10000;</button>
                     </div>
                 </div>
             </form>

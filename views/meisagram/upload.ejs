@@ -1,19 +1,18 @@
 <%-include('../partials/header')%>
 
 <%= typeof msg != 'undefined' ? msg : '' %>
-    <form class="container" class="uploadbar" action="/upload" method="POST" enctype="multipart/form-data">
-        <div class="input-group mb-3">
-                <div class="custom-file">
-                  <input type="file" name="image" class="custom-file-input" id="inputGroupFile02">
-                  <label class="custom-file-label" for="inputGroupFile02">Choose image</label>
-                </div>
-              </div>
-              <div class="input-group">
-                  <textarea class="form-control" name="caption" aria-label="With textarea"></textarea>
-                  <div class="input-group-append">
-                        <input class="btn btn-outline-secondary" type="submit">
-                      </div>
-                  </div>
-    </form>
+<form class="container uploadbar" action="/upload" method="POST" enctype="multipart/form-data">
+  <div class="input-group mb-3">
+    <div class="custom-file">
+      <input type="file" name="image" class="custom-file-input" id="inputGroupFile02">
+      <label class="custom-file-label" for="inputGroupFile02">Upload a Meme...</label>
+    </div>
+  </div>
+  <div class="input-group">
+    <textarea class="form-control" name="caption" aria-label="With textarea" placeholder="Caption..."></textarea>
+    <div class="input-group-append">
+      <input class="btn btn-outline-success" type="submit">
+    </div>
+  </div>
+</form>
 <%-include('../partials/footer')%>
-

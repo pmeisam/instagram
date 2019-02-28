@@ -7,7 +7,15 @@ module.exports = {
     addLike,
     addComment,
     delete: deleteComment,
-    destroyPost
+    destroyPost,
+    updatePost
+}
+function updatePost(req, res){
+    Images.findByIdAndUpdate( req.params.id, {caption: req.body.caption}, function(err, image){
+        image.save(function(err){
+            res.redirect('back');
+        })
+    })
 }
 function destroyPost(req, res){
     console.log('in the right function')

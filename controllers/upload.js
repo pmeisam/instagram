@@ -12,6 +12,8 @@ function create(req, res) {
     image.url = req.file.url;
     image.caption = req.body.caption;
     image.user = req.user.userName;
+    image.avatar = req.user.avatar;
+    console.log(req.user)
     image.gId = req.user.googleId;
     Image.create( image , function(err, image){
         req.user.photos.unshift(

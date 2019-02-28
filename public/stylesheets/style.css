@@ -41,11 +41,14 @@ p {
   width:100%; 
   border-radius: 10px;
 }
+.cm {
+  padding: 5px 5px;
+}
 .profile {
   padding: 30px;
-  background-color: white;
-  border-radius: 5%;
-  color: rgb(29,30,45);
+  background-color: rgb(39,41,59);
+  /* border-radius: 5%; */
+  color: white;
   display: flex;
   justify-content: space-between;
 }
@@ -54,7 +57,7 @@ p {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
-  background-color: black;
+  background-color: rgb(116, 118, 121);
   /* background-color: #ba54f5!important;
   background-image: linear-gradient(to bottom left,#f04,#f059ac,#ecb7b7)!important; */
   

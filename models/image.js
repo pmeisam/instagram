@@ -8,6 +8,7 @@ var imageSchema = new Schema({
     caption: String,
     user: String,
     gId: String,
+    avatar: String,
     likes: [],
     comments: [{
         user: String,

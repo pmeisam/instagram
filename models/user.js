@@ -6,6 +6,7 @@ var userSchema = new Schema({
     email: String,
     googleId: String,
     email: String,
+    avatar: String,
     photos: [{
         type: Schema.Types.ObjectId,
         ref:'Image'
