@@ -1,6 +1,6 @@
 # Memesagram
 by Meisam Poorzand for General Assembly Project 2
-Click [here](https://memesagram.herokuapp.com/) to interact!
+Click [here](https://memesagram.herokuapp.com/) to try it out!
 
 
 ## Description
