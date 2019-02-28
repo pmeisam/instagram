@@ -55,7 +55,7 @@ function addComment(req, res) {
         }
 
 function show(req, res) {
-            res.render('meisagram/likes', { title: 'Meisagram' });
+            res.render('meisagram/likes', { title: 'Memesagram' });
         }
 
 function addLike(req, res) {

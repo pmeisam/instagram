@@ -4,7 +4,7 @@ var passport = require('passport');
 /* GET home page. */
 
 router.get('/', function (req, res) {
-  res.render('index', { title: 'Meisagram' });
+  res.render('index', { title: 'Memesagram' });
 })
 
 router.get('/auth/google',

@@ -28,6 +28,6 @@ function create(req, res) {
 }
 
 function show(req, res, next) {
-    res.render('meisagram/upload', { title: 'Meisagram' })
+    res.render('meisagram/upload', { title: 'Memesagram' })
 }
 

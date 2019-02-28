@@ -30,6 +30,6 @@ function update(req, res){
 
 function show(req, res, next) {
     User.findById(req.params.id, function (err, user) {
-        res.render('meisagram/editprofile', { title: 'Meisagram', user });
+        res.render('meisagram/editprofile', { title: 'Memesagram', user });
     })
 }

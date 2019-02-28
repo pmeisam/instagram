@@ -9,7 +9,7 @@ function index(req, res, next) {
     Images.find({},function(err, image){
         if (err) redirect("/");
         var user = req.user
-        res.render('meisagram/feed', { title: 'Meisagram' , image , user});
+        res.render('meisagram/feed', { title: 'Memesagram' , image , user});
     })
 }
 

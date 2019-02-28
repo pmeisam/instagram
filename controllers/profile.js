@@ -86,7 +86,7 @@ function addLike(req, res, next) {
 
 function show(req, res, next) {
     req.user.populate('photos', function (err, u) {
-        res.render('meisagram/profile', { u: req.user, title: 'Meisagram' });
+        res.render('meisagram/profile', { u: req.user, title: 'Memesagram' });
     })
 }
 
