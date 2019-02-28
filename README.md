@@ -17,7 +17,7 @@ Memesagram originated in the mind of Meisam Poorzand in the city of Santa Monica
 
 
 ## Technologies Used
-HTML5, CSS3
+ejs, CSS3, Node.js, Mongoose, MongoDB, Express.js, Mongo ATLAS, Heroku, oAuth, RESTful APIs, and Cloudinary
 
 
 ## Next Steps
