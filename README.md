@@ -1,6 +1,8 @@
 # Memesagram
+Did you code all day and your oAuth is not working yet?
 Are you tired of coding?
 Is Node.js bugging you?
+What do you think about ID's?
 How is CSS treating you these days?
 Some headaches?
 Spend a few minutes in Memesagram for coders and refresh your head.
