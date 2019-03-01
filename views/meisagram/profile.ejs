@@ -1,11 +1,17 @@
 <%-include('../partials/header')%>
 <div class="container">
-    <p class="profile">
+    <div class="profile">
         <img class="profilepic" src="<%=u.avatar%>">
-        <%= u.userName %><br>
-        <%= u.email %>
-        <a href="/editprofile/<%=u._id%>"><button class="btn btn-outline-secondary">Profile Settings</button></a>
-    </p>
+        
+        <div style="color: white;">
+            <p>Username: <%= u.userName %></p>
+            <p>E-mail: <%= u.email %></p>
+            
+            <a href="/editprofile/<%=u._id%>" class="btn btn-outline-secondary btn-sm">Profile Settings</a>
+        </div>
+            
+
+    </div>
     <hr>
 
     <%u.photos.forEach(function(p){%>
@@ -20,14 +26,14 @@
                 <form action="/profile/<%= p._id %>" method="POST">
                     <button type="submit" class="likebtn btn btn-outline-danger btn-sm">&#10084;</button>
                     <%if( p.likes.length === 0 ) {%>
-                        <span></span>
+                    <span></span>
                     <%}%>
                     <%if( p.likes.length === 1 ){ %>
-                        <span> <%=p.likes.length%> like</span>
-                        <%}%>
+                    <span> <%=p.likes.length%> like</span>
+                    <%}%>
                     <%if( p.likes.length > 1 ) {%>
-                        <span> <%=p.likes.length%> likes</span>
-                        <%}%>
+                    <span> <%=p.likes.length%> likes</span>
+                    <%}%>
                     <!-- <span><%= p.likes.length %> like(s)</span> -->
                 </form>
                 <div class="btn-group dropleft likebtn">
@@ -47,11 +53,11 @@
                 </div>
             </div>
             <p>
-                    <%if(p.caption.length === 0){%>
-                        <span></span>
-                    <%} else {%>
-                        <strong><%= u.userName %>: </strong><%= p.caption %>
-                    <%}%>
+                <%if(p.caption.length === 0){%>
+                <span></span>
+                <%} else {%>
+                <strong><%= u.userName %>: </strong><%= p.caption %>
+                <%}%>
                 <!-- <strong><%=u.userName%>: </strong><%=p.caption%> -->
             </p>
             <% p.comments.forEach(function(c){%>
@@ -69,7 +75,8 @@
 
             <form action="/profile/comments/<%= p._id %>" method="POST">
                 <div class="input-group">
-                    <input name="comment" class="form-control" autocomplete="off" placeholder="comment..." aria-label="With textarea">
+                    <input name="comment" class="form-control" autocomplete="off" placeholder="comment..."
+                        aria-label="With textarea">
                     <div class="input-group-prepend">
                         <button class="btn btn-outline-primary" type="submit">&#10000;</button>
                     </div>

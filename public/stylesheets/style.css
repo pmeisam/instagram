@@ -58,12 +58,14 @@ p {
   padding: 5px 5px;
 }
 .profile {
-  padding: 30px;
+  margin-top: 30px;
+  padding: 30px 10px;
   background-color: rgb(39,41,59);
   /* border-radius: 5%; */
   color: white;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
 }
 .comment {
   border-radius: 4px;
