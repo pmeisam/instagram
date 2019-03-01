@@ -1,4 +1,10 @@
 # Memesagram
+Are you tired of coding?
+Is Node.js bugging you?
+How is CSS treating you these days?
+Some headaches?
+Spend a few minutes in Memesagram for coders and refresh your head.
+
 by Meisam Poorzand for General Assembly Project 2
 Click [here](https://memesagram.herokuapp.com/) to try it out!
 
