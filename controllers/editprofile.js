@@ -15,16 +15,23 @@ function destroyProfile(req, res){
 }
 function update(req, res){
     User.findById(req.params.id, function(err, user){
-        console.log("typeof req.file: ", typeof req.file)
         if (typeof(req.file) === "object"){
             user.avatar = req.file.url;
         }
         if(req.body.userName.length >= 4){
             user.userName = req.body.userName;
-        }
-        user.save(function(err){
-                res.redirect('/profile')
+            user.adrs = user.userName.replace(' ','');
+            User.find({userName: user.userName}, function(){
+                if(user.userName === req.body.userName){
+                    res.send('The new user name is already taken, please try some other name.');
+                }else {
+                    user.save(function(err){
+                        res.redirect(`/profile/${req.user.adrs}`)
+                    })
+                }
             })
+        }
+        
     });
 }
 

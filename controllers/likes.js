@@ -71,9 +71,14 @@ function addLike(req, res) {
                     // console.log('user live: ', req.user);
                     console.log('email: ', req.user.email)
                     if (image.likes.includes(req.user.email)) {
+                        for( var i = 0; i < image.likes.length; i++){ 
+                            if ( image.likes[i] === req.user.email) {
+                              image.likes.splice(i, 1); 
+                            }
+                         }
+                        image.save();
                         res.redirect('/feed');
                     } else {
-                        // photo.like.push({ email: req.user.email });
                         image.likes.push(req.user.email);
                         image.save();
                         user.save(function () {

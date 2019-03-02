@@ -10,6 +10,10 @@ var imageSchema = new Schema({
     gId: String,
     avatar: String,
     likes: [],
+    userId: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     comments: [{
         user: String,
         comment: String

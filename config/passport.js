@@ -18,8 +18,12 @@ passport.use(new GoogleStrategy({
                 userName: profile.displayName,
                 googleId: profile.id,
                 email: profile.emails[0].value,
-                avatar: profile.photos[0].value
+                avatar: profile.photos[0].value,
+                adrs: profile.displayName.replace(' ','')
             });
+            User.find({adrs: newUser.adrs}, function(err){
+                newUser.adrs = profile.displayName.replace(" ", "")+1;
+            })
             newUser.save(function(err){
                 if(err) return cb(err);
                 // console.log('new user ' + user);

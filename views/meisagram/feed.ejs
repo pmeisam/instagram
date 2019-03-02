@@ -5,12 +5,15 @@
         <div class="pstinside">
             <p>
                 <img class="profileimg" src="<%= i.avatar %>">
-                <%=i.user%>
-                <!-- <%= i.avatar %> -->
+                <a href="/profile/<%=i.userId.adrs%>"><%=i.user%></a>
             </p>
             <img class="postimage" src="<%=i.url %>">
             <form action="/likes/<%= i._id %>" method="POST">
+                <% if ( i.likes.includes( user.email ) ){ %>
+                <button class="likebtn btn btn-danger btn-sm" type="submit">&#9829;</button>
+                <%  }else{ %>
                 <button class="likebtn btn btn-outline-danger btn-sm" type="submit">&#9829;</button>
+                <%}%>
                 <%if( i.likes.length === 0 ) {%>
                 <span></span>
                 <%}%>
@@ -23,11 +26,10 @@
             </form>
             <p>
                 <%if(i.caption.length === 0){%>
-                    <span></span>
+                <span></span>
                 <%} else {%>
-                    <strong><%= i.user %>: </strong><%= i.caption %>
+                <strong><%= i.user %>: </strong><%= i.caption %>
                 <%}%>
-                <!-- <%= i.caption %> -->
             </p>
                 <% i.comments.forEach(function(c){%>
                 <span class="comment">
@@ -41,8 +43,8 @@
                 <% });%>
                 <form action="/likes/comments/<%= i._id %>" method="POST">
                     <div class="input-group">
-                        <input name="comment" class="form-control" placeholder="comment..."
-                            aria-label="With textarea" autocomplete="off">
+                        <input name="comment" class="form-control" placeholder="comment..." aria-label="With textarea"
+                            autocomplete="off">
                         <div class="input-group-prepend">
                             <button class="btn btn-outline-primary" type="submit">&#10000;</button>
                         </div>

@@ -18,22 +18,18 @@ function updatePost(req, res){
     })
 }
 function destroyPost(req, res){
-    console.log('in the right function')
-    console.log(req.params.i_id);
     Images.findById(req.params.i_id, function(err, image){
         image.remove();
         image.save(function(err){
-            res.redirect('/profile');
+            res.redirect(`/profile/${req.user.adrs}`);
         })
     })
 }
 function deleteComment(req, res){
-    // console.log('req.params.i_id', req.params.i_id);
-    // console.log('req.params.c_id', req.params.c_id);
     Images.findById(req.params.i_id, function(err, image){
         image.comments.id(req.params.c_id).remove();
         image.save(function(err){
-            res.redirect('/profile');
+            res.redirect(`/profile/${req.user.adrs}`);
         })
     })
 }
@@ -41,19 +37,13 @@ function deleteComment(req, res){
 function addComment(req, res) {
     Images.findById(req.params.id, function (err, image){
         Users.findOne({googleId: image.gId}, function(err, user){
-            // var photo = user.photos.find(p => p.photo === image.url);
-            // console.log("the comment is:", req.body.comment)
-            // photo.comments.push({
-            //     comment: req.body.comment,
-            //     user: req.user.userName
-            // });
             image.comments.push({
                 comment: req.body.comment,
                 user: req.user.userName
             });
             image.save();
             user.save(function(){
-                res.redirect('/profile');
+                res.redirect(`/profile/${req.user.adrs}`);
             })
         })
     })
@@ -61,23 +51,19 @@ function addComment(req, res) {
 function addLike(req, res, next) {
     Images.findById(req.params.id, function (err, image) {
         Users.findOne({ googleId: image.gId }, function (err, user) {
-            // console.log("user: ", user)
-            // console.log('googleId: ', user.googleId);
-            // var photo = user.photos.find(p => p.photo === image.url);
-            // ----------- I need a if statement here to know if the user has liked before so he can't like no more
-            // console.log("email: ", user.email);
-            // console.log('including: ', image.likeNo.includes(user.email));
-            // console.log('what includes: ', image.likeNo);
-            // console.log('user live: ', req.user);
-            console.log('email: ', req.user.email)
             if(image.likes.includes(req.user.email)){
-                res.redirect('/profile');
+                for( var i = 0; i < image.likes.length; i++){ 
+                    if ( image.likes[i] === req.user.email) {
+                      image.likes.splice(i, 1); 
+                    }
+                 }
+                image.save();
+                res.redirect(`/profile/${req.user.adrs}`);
             }else {
-                // photo.like.push({ email: req.user.email });
                 image.likes.push( req.user.email );
                 image.save();
                 user.save(function () {
-                    res.redirect('/profile');
+                    res.redirect(`/profile/${req.user.adrs}`);
                 });
             }
         });
@@ -85,8 +71,8 @@ function addLike(req, res, next) {
 }
 
 function show(req, res, next) {
-    req.user.populate('photos', function (err, u) {
-        res.render('meisagram/profile', { u: req.user, title: 'Memesagram' });
+    req.user.populate('photos', function (err, user) {
+        res.render('meisagram/profile', { user: req.user, title: 'Memesagram' });
     })
 }
 

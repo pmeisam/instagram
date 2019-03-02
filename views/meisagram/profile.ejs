@@ -1,30 +1,33 @@
 <%-include('../partials/header')%>
 <div class="container">
     <div class="profile">
-        <img class="profilepic" src="<%=u.avatar%>">
+        <img class="profilepic" src="<%=user.avatar%>">
         
         <div style="color: white;">
-            <p>Username: <%= u.userName %></p>
-            <p>E-mail: <%= u.email %></p>
-            
-            <a href="/editprofile/<%=u._id%>" class="btn btn-outline-secondary btn-sm">Profile Settings</a>
+            <p>Username: <%= user.userName %></p>
+            <p>E-mail: <%= user.email %></p>
+            <a href="/editprofile/<%=user._id%>" class="btn btn-outline-secondary btn-sm">Profile Settings</a>
         </div>
-            
-
     </div>
     <hr>
 
-    <%u.photos.forEach(function(p){%>
+    <%user.photos.forEach(function(p){%>
     <div class="posts">
         <div class="pstinside">
             <p>
-                <img class="profileimg" src="<%=u.avatar%>">
-                <%=u.userName%>
+                <img class="profileimg" src="<%=user.avatar%>">
+                <%=user.userName%>
             </p>
             <img class="postimage" src="<%=p.url%>">
             <div style="display: flex; justify-content: space-between;">
                 <form action="/profile/<%= p._id %>" method="POST">
+                    <%if( !p.likes.includes(user.email)){%>
                     <button type="submit" class="likebtn btn btn-outline-danger btn-sm">&#10084;</button>
+               <% }else{%>
+                    <button type="submit" class="likebtn btn btn-danger btn-sm">&#10084;</button>
+
+                   <% }%>
+            
                     <%if( p.likes.length === 0 ) {%>
                     <span></span>
                     <%}%>
@@ -56,9 +59,8 @@
                 <%if(p.caption.length === 0){%>
                 <span></span>
                 <%} else {%>
-                <strong><%= u.userName %>: </strong><%= p.caption %>
+                <strong><%= user.userName %>: </strong><%= p.caption %>
                 <%}%>
-                <!-- <strong><%=u.userName%>: </strong><%=p.caption%> -->
             </p>
             <% p.comments.forEach(function(c){%>
 
