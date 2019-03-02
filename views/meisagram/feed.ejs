@@ -5,7 +5,7 @@
         <div class="pstinside">
             <p>
                 <img class="profileimg" src="<%= i.avatar %>">
-                <a href="/profile/<%=i.userId.adrs%>"><%=i.user%></a>
+                <a href="/profile/user/<%=i.adrs%>"><%=i.user%></a>
             </p>
             <img class="postimage" src="<%=i.url %>">
             <form action="/likes/<%= i._id %>" method="POST">

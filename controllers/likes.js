@@ -12,14 +12,14 @@ module.exports = {
 
 function deleteComment(req, res) {
             var params = req.params;
-            console.log('image: ', params.i_id)
-            console.log("image: ", params.images)
-            console.log("image: ", params.likes_id)
-            console.log("image: ", params.c_id)
+            // console.log('image: ', params.i_id)
+            // console.log("image: ", params.images)
+            // console.log("image: ", params.likes_id)
+            // console.log("image: ", params.c_id)
             Images.findById(params.i_id, function (err, image) {
-                console.log(image.comments.id(params.c_id).user)
-                console.log(req.user.userName)
-                console.log(req.user.userName === image.comments.id(params.c_id).user)
+                // console.log(image.comments.id(params.c_id).user)
+                // console.log(req.user.userName)
+                // console.log(req.user.userName === image.comments.id(params.c_id).user)
                 // the if statement isn't working properly
                 if (req.user.userName === image.comments.id(params.c_id).user) {
                     image.comments.id(params.c_id).remove();

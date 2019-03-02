@@ -14,6 +14,7 @@ var imageSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
+    adrs: String,
     comments: [{
         user: String,
         comment: String

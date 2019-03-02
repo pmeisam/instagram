@@ -8,8 +8,17 @@ module.exports = {
     addComment,
     delete: deleteComment,
     destroyPost,
-    updatePost
+    updatePost,
+    findUser
 }
+function findUser(req, res){
+    Users.findOne({adrs: req.params.useradrs}).populate('photos').exec( function(err, user){
+            console.log('other user: ', user);
+            var onlineUser = req.user;
+                res.render(`meisagram/otheruser`, {onlineUser, user, title: "Memesagram"});
+            })
+}
+
 function updatePost(req, res){
     Images.findByIdAndUpdate( req.params.id, {caption: req.body.caption}, function(err, image){
         image.save(function(err){

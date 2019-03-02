@@ -1,0 +1,58 @@
+<%-include('../partials/header')%>
+<div class="container">
+    <div class="profile">
+        <img class="profilepic" src="<%=user.avatar%>">
+        
+        <div style="color: white;">
+            <p>Username: <%= user.userName %></p>         
+        </div>
+    </div>
+    <hr>
+    <%user.photos.forEach(function(p){%>
+    <div class="posts">
+        <div class="pstinside">
+            <p>
+                <img class="profileimg" src="<%=user.avatar%>">
+                <%=user.userName%>
+            </p>
+            <img class="postimage" src="<%=p.url%>">
+            <div style="display: flex; justify-content: space-between;">
+                <form action="/profile/<%= p._id %>" method="POST">
+            
+                    <%if( p.likes.length === 0 ) {%>
+                    <span></span>
+                    <%}%>
+                    <%if( p.likes.length === 1 ){ %>
+                    <span> <%=p.likes.length%> like</span>
+                    <%}%>
+                    <%if( p.likes.length > 1 ) {%>
+                    <span> <%=p.likes.length%> likes</span>
+                    <%}%>
+                    <!-- <span><%= p.likes.length %> like(s)</span> -->
+                </form>
+            </div>
+            <p>
+                <%if(p.caption.length === 0){%>
+                <span></span>
+                <%} else {%>
+                <strong><%= user.userName %>: </strong><%= p.caption %>
+                <%}%>
+            </p>
+            <% p.comments.forEach(function(c){%>
+
+            <span class="comment">
+                <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
+                
+            </span>
+            <% });%>
+
+
+        </div>
+    </div>
+    <%})%>
+
+</div>
+
+
+
+<%-include('../partials/footer')%>

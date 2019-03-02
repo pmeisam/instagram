@@ -13,14 +13,17 @@ function create(req, res) {
     image.caption = req.body.caption;
     image.user = req.user.userName;
     image.avatar = req.user.avatar;
-    console.log('req.user: ', req.user)
+    // console.log('req.user: ', req.user)
     image.userId = req.user.id;
     image.userId = req.user
     image.gId = req.user.googleId;
-    Image.create( image , function(err, image){
-        req.user.photos.unshift(image);
-        req.user.save(function (err) {
-            res.redirect(`/feed`);
+    image.adrs = req.user.adrs;
+    Image.create( image , function(err, img){
+        img.populate('userId', function(err, i){
+            req.user.photos.unshift(i);
+            req.user.save(function (err) {
+                res.redirect(`/feed`);
+        });
         });
     });
 
