@@ -8,6 +8,10 @@ var userSchema = new Schema({
     googleId: String,
     email: String,
     avatar: String,
+    bio: String,
+    notification: [String],
+    followers: [String],
+    following: [String],
     photos: [{
         type: Schema.Types.ObjectId,
         ref:'Image'

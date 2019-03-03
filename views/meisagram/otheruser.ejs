@@ -2,9 +2,9 @@
 <div class="container">
     <div class="profile">
         <img class="profilepic" src="<%=user.avatar%>">
-        
+
         <div style="color: white;">
-            <p>Username: <%= user.userName %></p>         
+            <p>Username: <%= user.userName %></p>
         </div>
     </div>
     <hr>
@@ -18,7 +18,13 @@
             <img class="postimage" src="<%=p.url%>">
             <div style="display: flex; justify-content: space-between;">
                 <form action="/profile/<%= p._id %>" method="POST">
-            
+                    <%if( !p.likes.includes(onlineUser.email)){%>
+                    <button type="submit" class="likebtn btn btn-outline-danger btn-sm">&#10084;</button>
+                    <% }else{%>
+                    <button type="submit" class="likebtn btn btn-danger btn-sm">&#10084;</button>
+
+                    <% }%>
+
                     <%if( p.likes.length === 0 ) {%>
                     <span></span>
                     <%}%>
@@ -40,12 +46,28 @@
             </p>
             <% p.comments.forEach(function(c){%>
 
-            <span class="comment">
-                <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
-                
+                <span class="comment">
+                    <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
+                    <span>
+                        <%if(c.user === user.userName){%>
+                        <form action="/profile/<%= p._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
+                            <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete">
+                        </form>
+                        <%}%>
+                </span>
             </span>
             <% });%>
 
+
+                        <form action="/profile/comments/<%= p._id %>" method="POST">
+                            <div class="input-group">
+                                <input name="comment" class="form-control" autocomplete="off" placeholder="comment..."
+                                    aria-label="With textarea">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary" type="submit">&#10000;</button>
+                                </div>
+                            </div>
+                        </form>
 
         </div>
     </div>

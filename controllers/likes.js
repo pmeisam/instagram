@@ -24,10 +24,10 @@ function deleteComment(req, res) {
                 if (req.user.userName === image.comments.id(params.c_id).user) {
                     image.comments.id(params.c_id).remove();
                     image.save(function (err) {
-                        res.redirect('/feed')
+                        res.redirect('back')
                     });
                 } else {
-                    res.redirect('/feed');
+                    res.redirect('back');
                 }
             });
         }
@@ -47,7 +47,7 @@ function addComment(req, res) {
                     });
                     image.save();
                     user.save(function () {
-                        res.redirect('/feed');
+                        res.redirect('back');
                     })
                 })
             })
@@ -77,12 +77,12 @@ function addLike(req, res) {
                             }
                          }
                         image.save();
-                        res.redirect('/feed');
+                        res.redirect('back');
                     } else {
                         image.likes.push(req.user.email);
                         image.save();
                         user.save(function () {
-                            res.redirect('/feed');
+                            res.redirect('back');
                         });
                     }
                 });

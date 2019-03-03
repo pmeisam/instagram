@@ -38,7 +38,7 @@ function deleteComment(req, res){
     Images.findById(req.params.i_id, function(err, image){
         image.comments.id(req.params.c_id).remove();
         image.save(function(err){
-            res.redirect(`/profile/${req.user.adrs}`);
+            res.redirect(`back`);
         })
     })
 }
@@ -52,7 +52,7 @@ function addComment(req, res) {
             });
             image.save();
             user.save(function(){
-                res.redirect(`/profile/${req.user.adrs}`);
+                res.redirect(`back`);
             })
         })
     })
@@ -67,12 +67,14 @@ function addLike(req, res, next) {
                     }
                  }
                 image.save();
-                res.redirect(`/profile/${req.user.adrs}`);
+                // res.redirect(`/profile/${req.user.adrs}`);
+                res.redirect(`back`);
             }else {
                 image.likes.push( req.user.email );
                 image.save();
                 user.save(function () {
-                    res.redirect(`/profile/${req.user.adrs}`);
+                    // res.redirect(`/profile/${req.user.adrs}`);
+                    res.redirect(`back`);
                 });
             }
         });
