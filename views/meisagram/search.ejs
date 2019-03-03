@@ -1,0 +1,31 @@
+<%-include('../partials/header')%>
+<div class="container uploadbar">
+    <form action="/search" method="GET">
+        <div class="input-group mb-3">
+            <input type="search" name="username" class="form-control" placeholder="search by username..."
+                aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+    <%if(searchData.length === 0){%>
+        <p style="color: white;">Sorry nothing found</p>
+    <%} else {%>
+    <p style="color: white;">Results found for <%=userName%>:</p>
+    <table>
+
+        <%searchData.forEach(function(s){%>
+        <tr>
+            <td><img class="profileimg" src="<%=s.avatar%>" alt=""></td>
+            <td><a href="/profile/user/<%=s.adrs%>"><%=s.userName%></a></td>
+        </tr>
+
+        <%})%>
+    </table>
+
+    <%}%>
+</div>
+
+
+<%-include('../partials/footer')%>

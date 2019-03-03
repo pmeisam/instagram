@@ -26,6 +26,7 @@ var feedRouter = require('./routes/feed');
 var likesRouter = require('./routes/likes');
 var editprofileRouter = require('./routes/editprofile');
 var profileRouter = require('./routes/profile');
+var searchRouter = require('./routes/search');
 
 
 
@@ -57,6 +58,7 @@ app.use('/feed', feedRouter);
 app.use('/editprofile', editprofileRouter);
 app.use('/likes', likesRouter);
 app.use('/upload', uploadRouter);
+app.use('/search', searchRouter);
 
 
 // catch 404 and forward to error handler
