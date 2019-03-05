@@ -77,10 +77,10 @@
 
             <!-- <form action="/profile/comments/<%= p._id %>" method="POST"> -->
                 <div class="input-group">
-                    <input name="comment" id="commentvalue" class="form-control" autocomplete="off" placeholder="comment..."
+                    <input name="comment"  class="<%= p._id %> form-control" autocomplete="off" placeholder="comment..."
                         aria-label="With textarea">
                     <div class="input-group-prepend">
-                        <button class="btn btn-outline-primary" type="submit" id="commentsubmit" data-id="<%= p._id %>">&#10000;</button>
+                        <button class="commentsubmit btn btn-outline-primary" type="submit" data-id="<%= p._id %>">&#10000;</button>
                     </div>
                 </div>
             <!-- </form> -->

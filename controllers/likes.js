@@ -46,6 +46,8 @@ function addComment(req, res) {
                     //     comment: req.body.comment,
                     //     user: req.user.userName
                     // });
+                    console.log("comment: ", req.body.comment);
+                    
                     image.comments.push({
                         comment: req.body.comment,
                         user: req.user.userName

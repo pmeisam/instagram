@@ -34,16 +34,18 @@
             }
         })
     })
-    $('#commentsubmit').click(function(evt){
+    $('.commentsubmit').click(function(evt){
         evt.preventDefault();
         const id = $(this).attr('data-id');
-        console.log('id: ', id)
+        
+        console.log('id: ', id);
+        console.log("comment val: ", $(`.${id}`).val());
         $.ajax({
-            method: "POST",
+            type: "post",
             url: '/likes/comments/' + id,
             data: {
                 id: id,
-                comment: $('#commentvalue').val()
+                comment: $(`.${id}`).val()
             }
         }).done(function(res){
             if(res.success){
@@ -53,7 +55,7 @@
             }
         })
     })
-    $('#cmntdelete').click(function(evt){
+    $('.cmntdelete').click(function(evt){
         evt.preventDefault();
         const i_id = $(this).attr('image-id');
         const c_id = $(this).attr('comment-id');
