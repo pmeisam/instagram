@@ -1,12 +1,14 @@
 <%-include('../partials/header')%>
-<div class="container" style="color: white;">
-<tbody style="display: flex; flex-direction: column;">
-   <% user.notification.forEach(function(n){%>
-        <p><%=n%></p>
-        
-    <%})%>
-</tbody>
-</div>
+<table class="container table">
+    <tbody>
+        <% user.notification.forEach(function(n){%>
+        <tr>
+            <td><%=n%></td>
+        </tr>
+        <!-- <p></p> -->
 
+        <%})%>
+    </tbody>
+</table>
 
 <%-include('../partials/footer')%>

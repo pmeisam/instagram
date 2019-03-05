@@ -49,7 +49,6 @@ p {
   width: 100%;
   height: 240px;
   border-radius: 10px;
-  
 }
 .container {
   margin-top: 70px;
@@ -60,19 +59,20 @@ p {
 .profile {
   margin-top: 30px;
   padding: 30px 10px;
-  background-color: rgb(39,41,59);
+  /* background-color: rgb(39,41,59); */
   /* border-radius: 5%; */
-  color: white;
+  /* color: white; */
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 .comment {
-  border-radius: 4px;
+  /* border-radius: 4px; */
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
-  background-color: rgb(46, 51, 56);
+  border-top: 2px ridge gray;
+  /* background-color: rgb(46, 51, 56); */
   /* background-color: #ba54f5!important;
   background-image: linear-gradient(to bottom left,#f04,#f059ac,#ecb7b7)!important; */
   
@@ -84,14 +84,14 @@ p {
   color: rgb(243,243,243);
 } */
 .posts {
-  background-color: rgb(39,41,59);
-  color: #f3f3f4;
+  /* background-color: rgb(39,41,59); */
+  /* color: #f3f3f4; */
   width: 100%;
   margin: 10% 0;
   border-radius: 3%;
 }
 body {
-  background-color: rgb(29,30,45);
+  /* background-color: rgb(29,30,45); */
   margin: 0 auto;
   height: 100%;
   display: flex;
