@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var likesCtrl = require('../controllers/likes');
 
-router.get('/', isLoggedIn, likesCtrl.show);
+router.get('/notifications', isLoggedIn, likesCtrl.show);
 router.post('/:id', isLoggedIn, likesCtrl.addLike);
 router.post('/comments/:id', isLoggedIn, likesCtrl.addComment);
 router.delete('/:i_id/comments/:c_id', isLoggedIn, likesCtrl.delete);

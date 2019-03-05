@@ -1,0 +1,12 @@
+<%-include('../partials/header')%>
+<div class="container" style="color: white;">
+<tbody style="display: flex; flex-direction: column;">
+   <% user.notification.forEach(function(n){%>
+        <p><%=n%></p>
+        
+    <%})%>
+</tbody>
+</div>
+
+
+<%-include('../partials/footer')%>
