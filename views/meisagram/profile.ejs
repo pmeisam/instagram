@@ -20,14 +20,13 @@
             </p>
             <img class="postimage" src="<%=p.url%>">
             <div style="display: flex; justify-content: space-between;">
-                <form action="/profile/<%= p._id %>" method="POST">
+                <!-- <form action="/profile/<%= p._id %>" method="POST"> -->
+                    <div>
                     <%if( !p.likes.includes(user.email)){%>
-                    <button type="submit" class="likebtn btn btn-outline-danger btn-sm">&#10084;</button>
+                    <button type="submit" class="likebtn btn btn-outline-danger btn-sm" data-id="<%=p._id%>">&#10084;</button>
                <% }else{%>
-                    <button type="submit" class="likebtn btn btn-danger btn-sm">&#10084;</button>
-
+                    <button type="submit" class="likebtn btn btn-danger btn-sm" data-id="<%=p._id%>">&#10084;</button>
                    <% }%>
-            
                     <%if( p.likes.length === 0 ) {%>
                     <span></span>
                     <%}%>
@@ -38,8 +37,9 @@
                     <span> <%=p.likes.length%> likes</span>
                     <%}%>
                     <!-- <span><%= p.likes.length %> like(s)</span> -->
-                </form>
-                <div class="btn-group dropleft likebtn">
+                <!-- </form> -->
+            </div>
+                <div class="btn-group dropleft" style="height: 30px; margin-top: 10px;">
                     <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenu2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Edit
@@ -67,23 +67,23 @@
             <span class="comment">
                 <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
                 <span>
-                    <form action="/profile/<%= p._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
-                        <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete">
-                    </form>
+                    <!-- <form action="/profile/<%= p._id %>/comments/<%= c._id %>?_method=DELETE" method="POST"> -->
+                        <input type="submit" image-id="<%=p._id%>" cmnt-id="<%=c._id%>" class="btn btn-outline-danger btn-sm" value="Delete" id="inprofilecmntdlt">
+                    <!-- </form> -->
                 </span>
             </span>
             <% });%>
 
 
-            <form action="/profile/comments/<%= p._id %>" method="POST">
+            <!-- <form action="/profile/comments/<%= p._id %>" method="POST"> -->
                 <div class="input-group">
-                    <input name="comment" class="form-control" autocomplete="off" placeholder="comment..."
+                    <input name="comment" id="commentvalue" class="form-control" autocomplete="off" placeholder="comment..."
                         aria-label="With textarea">
                     <div class="input-group-prepend">
-                        <button class="btn btn-outline-primary" type="submit">&#10000;</button>
+                        <button class="btn btn-outline-primary" type="submit" id="commentsubmit" data-id="<%= p._id %>">&#10000;</button>
                     </div>
                 </div>
-            </form>
+            <!-- </form> -->
 
         </div>
     </div>

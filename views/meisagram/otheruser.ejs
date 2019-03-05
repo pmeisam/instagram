@@ -17,14 +17,13 @@
             </p>
             <img class="postimage" src="<%=p.url%>">
             <div style="display: flex; justify-content: space-between;">
-                <form action="/profile/<%= p._id %>" method="POST">
+                <!-- <form action="/profile/<%= p._id %>" method="POST"> -->
+                    <div>
                     <%if( !p.likes.includes(onlineUser.email)){%>
-                    <button type="submit" class="likebtn btn btn-outline-danger btn-sm">&#10084;</button>
+                    <button type="submit" class="likebtn btn btn-outline-danger btn-sm" data-id="<%=p._id%>">&#10084;</button>
                     <% }else{%>
-                    <button type="submit" class="likebtn btn btn-danger btn-sm">&#10084;</button>
-
+                    <button type="submit" class="likebtn btn btn-danger btn-sm" data-id="<%=p._id%>">&#10084;</button>
                     <% }%>
-
                     <%if( p.likes.length === 0 ) {%>
                     <span></span>
                     <%}%>
@@ -35,7 +34,8 @@
                     <span> <%=p.likes.length%> likes</span>
                     <%}%>
                     <!-- <span><%= p.likes.length %> like(s)</span> -->
-                </form>
+                <!-- </form> -->
+            </div>
             </div>
             <p>
                 <%if(p.caption.length === 0){%>
@@ -50,24 +50,24 @@
                     <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
                     <span>
                         <%if(c.user === user.userName){%>
-                        <form action="/profile/<%= p._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
-                            <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete">
-                        </form>
+                        <!-- <form action="/profile/<%= p._id %>/comments/<%= c._id %>?_method=DELETE" method="POST"> -->
+                            <input type="submit" id="inprofilecmntdlt" image-id="<%=p._id%>" cmnt-id="<%=c._id%>" class="btn btn-outline-danger btn-sm" value="Delete">
+                        <!-- </form> -->
                         <%}%>
                 </span>
             </span>
             <% });%>
 
 
-                        <form action="/profile/comments/<%= p._id %>" method="POST">
+                        <!-- <form action="/profile/comments/<%= p._id %>" method="POST"> -->
                             <div class="input-group">
-                                <input name="comment" class="form-control" autocomplete="off" placeholder="comment..."
+                                <input name="comment" id="commentvalue" class="form-control" autocomplete="off" placeholder="comment..."
                                     aria-label="With textarea">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-outline-primary" type="submit">&#10000;</button>
+                                    <button class="btn btn-outline-primary" id="commentsubmit" data-id="<%=p._id%>" type="submit">&#10000;</button>
                                 </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
 
         </div>
     </div>

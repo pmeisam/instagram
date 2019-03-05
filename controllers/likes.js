@@ -23,9 +23,14 @@ function deleteComment(req, res) {
                 // the if statement isn't working properly
                 if (req.user.userName === image.comments.id(params.c_id).user) {
                     image.comments.id(params.c_id).remove();
-                    image.save(function (err) {
-                        res.redirect('back')
-                    });
+                    image.save().then(function(){
+                        res.json({success: true});
+                    }).catch(function(err){
+                        res.status.json({err: err});
+                    })
+                    // image.save(function (err) {
+                    //     res.redirect('back')
+                    // });
                 } else {
                     res.redirect('back');
                 }
@@ -46,9 +51,15 @@ function addComment(req, res) {
                         user: req.user.userName
                     });
                     image.save();
-                    user.save(function () {
-                        res.redirect('back');
+                    user.save().then(() => {
+                        res.json({ success: true });
                     })
+                    .catch(err => {
+                        res.status.json({ err: err });
+                    });
+                    // user.save(function () {
+                    //     res.redirect('back');
+                    // })
                 })
             })
 
@@ -69,21 +80,32 @@ function addLike(req, res) {
                     // console.log('including: ', image.likeNo.includes(user.email));
                     // console.log('what includes: ', image.likeNo);
                     // console.log('user live: ', req.user);
-                    console.log('email: ', req.user.email)
+                    // console.log('email: ', req.user.email)
                     if (image.likes.includes(req.user.email)) {
                         for( var i = 0; i < image.likes.length; i++){ 
                             if ( image.likes[i] === req.user.email) {
                               image.likes.splice(i, 1); 
                             }
                          }
-                        image.save();
-                        res.redirect('back');
+                        image.save().then(() => {
+                            res.json({ success: true });
+                        })
+                        .catch(err => {
+                            res.status.json({ err: err });
+                        });
+                        // res.redirect('back');
                     } else {
                         image.likes.push(req.user.email);
                         image.save();
-                        user.save(function () {
-                            res.redirect('back');
+                        user.save().then(() => {
+                            res.json({ success: true });
+                        })
+                        .catch(err => {
+                            res.status.json({ err: err });
                         });
+                        // user.save(function () {
+                        //     res.redirect('back');
+                        // });
                     }
                 });
             });

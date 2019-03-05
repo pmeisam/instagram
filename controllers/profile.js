@@ -37,9 +37,12 @@ function destroyPost(req, res){
 function deleteComment(req, res){
     Images.findById(req.params.i_id, function(err, image){
         image.comments.id(req.params.c_id).remove();
-        image.save(function(err){
-            res.redirect(`back`);
-        })
+        // image.save(function(err){
+        //     res.redirect(`back`);
+        // })
+        image.save().then(function(){
+            res.json({success: true});
+        }).catch(err => {res.status.json({ err: err }); });
     })
 }
 

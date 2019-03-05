@@ -8,11 +8,11 @@
                 <a href="/profile/user/<%=i.adrs%>"><%=i.user%></a>
             </p>
             <img class="postimage" src="<%=i.url %>">
-            <form action="/likes/<%= i._id %>" method="POST">
+            <!-- <form action="/likes/<%= i._id %>" method="POST"> -->
                 <% if ( i.likes.includes( user.email ) ){ %>
-                <button class="likebtn btn btn-danger btn-sm" type="submit">&#9829;</button>
+                <button class="likebtn btn btn-danger btn-sm" type="submit" data-id="<%= i._id %>">&#9829;</button>
                 <%  }else{ %>
-                <button class="likebtn btn btn-outline-danger btn-sm" type="submit">&#9829;</button>
+                <button class="likebtn btn btn-outline-danger btn-sm" type="submit" data-id="<%= i._id %>">&#9829;</button>
                 <%}%>
                 <%if( i.likes.length === 0 ) {%>
                 <span></span>
@@ -23,7 +23,7 @@
                 <%if( i.likes.length > 1 ) {%>
                 <span> <%=i.likes.length%> likes</span>
                 <%}%>
-            </form>
+            <!-- </form> -->
             <p>
                 <%if(i.caption.length === 0){%>
                 <span></span>
@@ -36,22 +36,22 @@
                     <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
                     <span>
                         <%if(c.user === user.userName){%>
-                        <form action="/likes/<%= i._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
-                            <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete">
-                        </form>
+                        <!-- <form action="/likes/<%= i._id %>/comments/<%= c._id %>?_method=DELETE" method="POST"> -->
+                            <input class="btn btn-outline-danger btn-sm" image-id="<%=i._id%>" comment-id="<%=c._id%>" id="cmntdelete" type="submit" value="Delete">
+                        <!-- </form> -->
                         <%}%>
                     </span>
                 </span>
                 <% });%>
-                <form action="/likes/comments/<%= i._id %>" method="POST">
+                <!-- <form action="/likes/comments/<%= i._id %>" method="POST"> -->
                     <div class="input-group">
-                        <input name="comment" class="form-control" placeholder="comment..." aria-label="With textarea"
+                        <input name="comment" id="commentvalue" class="form-control" placeholder="comment..." aria-label="With textarea"
                             autocomplete="off">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-primary" type="submit">&#10000;</button>
+                            <button class="btn btn-outline-primary" id="commentsubmit" type="submit" data-id="<%= i._id %>">&#10000;</button>
                         </div>
                     </div>
-                </form>
+                <!-- </form> -->
         </div>
     </div>
     <% }); %>
