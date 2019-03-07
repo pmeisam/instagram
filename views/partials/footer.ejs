@@ -13,33 +13,41 @@
     $('.likebtn').click(function (evt) {
         evt.preventDefault();
         const id = $(this).attr('data-id');
+        $this = evt.target;
         // console.log('id: ', id);
         // console.log($.ajax);
         $.ajax({
             // global: false,
             method: 'POST',
             url: '/likes/' + id,
-            // dataType: 'ejs',
             data: {
                 id: id,
 
             }
         }).done(function (res) {
-            console.log(res.success);
+            console.log(res.like)
             if (res.success) {
-                console.log('id from ajax call is', res);
-                window.location.reload();
-            } else {
-                console.log('error...ajax');
+                if (res.like) {
+                    $($this).removeClass('btn-outline-danger')
+                    $($this).addClass('btn-danger');
+                    $(`#like${id}`).html((parseInt(res.likes) === 1) ? res.likes + " like" : res.likes + " likes");
+                } else {
+                    if (res.likes > 0) {
+                        $($this).removeClass('btn-danger');
+                        $($this).addClass('btn-outline-danger');
+                        $(`#like${id}`).html((parseInt(res.likes) === 1) ? res.likes + " like" : res.likes + " likes");
+                    } else if (res.likes === 0) {
+                        $($this).removeClass('btn-danger');
+                        $($this).addClass('btn-outline-danger');
+                        $(`#like${id}`).html("");
+                    }
+                }
             }
         })
     })
-    $('.commentsubmit').click(function(evt){
+    $('.commentsubmit').click(function (evt) {
         evt.preventDefault();
         const id = $(this).attr('data-id');
-        
-        console.log('id: ', id);
-        console.log("comment val: ", $(`.${id}`).val());
         $.ajax({
             type: "post",
             url: '/likes/comments/' + id,
@@ -47,15 +55,16 @@
                 id: id,
                 comment: $(`.${id}`).val()
             }
-        }).done(function(res){
-            if(res.success){
+        }).done(function (res) {
+            if (res.success) {
+                console.log(res.success);
                 window.location.reload();
-            }else{
+            } else {
                 console.log('error')
             }
         })
     })
-    $('.cmntdelete').click(function(evt){
+    $('.cmntdelete').click(function (evt) {
         evt.preventDefault();
         const i_id = $(this).attr('image-id');
         const c_id = $(this).attr('comment-id');
@@ -64,13 +73,13 @@
             url: '/likes/' + i_id + "/comments/" + c_id,
             i_id,
             c_id
-        }).done(function(res){
-            if(res.success){
+        }).done(function (res) {
+            if (res.success) {
                 window.location.reload();
             }
         })
     })
-    $('.inprofilecmntdlt').click(function(evt){
+    $('.inprofilecmntdlt').click(function (evt) {
         evt.preventDefault();
         const i_id = $(this).attr('image-id');
         const c_id = $(this).attr('cmnt-id');
@@ -79,8 +88,8 @@
             method: 'DELETE',
             i_id,
             c_id
-        }).done(function(res){
-            if(res.success){
+        }).done(function (res) {
+            if (res.success) {
                 window.location.reload();
             }
         })

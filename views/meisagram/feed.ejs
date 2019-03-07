@@ -9,49 +9,47 @@
             </p>
             <img class="postimage" src="<%=i.url %>">
             <!-- <form action="/likes/<%= i._id %>" method="POST"> -->
-                <% if ( i.likes.includes( user.email ) ){ %>
-                <button class="likebtn btn btn-danger btn-sm" type="submit" data-id="<%= i._id %>">&#9829;</button>
-                <%  }else{ %>
-                <button class="likebtn btn btn-outline-danger btn-sm" type="submit" data-id="<%= i._id %>">&#9829;</button>
-                <%}%>
+            <% if ( i.likes.includes( user.email ) ){ %>
+            <button class="likebtn btn btn-danger btn-sm" type="submit" data-id="<%= i._id %>">&#9829;</button>
+            <%  }else{ %>
+            <button class="likebtn btn btn-outline-danger btn-sm" type="submit" data-id="<%= i._id %>">&#9829;</button>
+            <%}%>
                 <%if( i.likes.length === 0 ) {%>
-                <span></span>
-                <%}%>
+            <span id="like<%=i._id%>"></span>
+            <%}%>
                 <%if( i.likes.length === 1 ){ %>
-                <span> <%=i.likes.length%> like</span>
-                <%}%>
+            <span id="like<%=i._id%>"> <%=i.likes.length%> like</span>
+            <%}%>
                 <%if( i.likes.length > 1 ) {%>
-                <span> <%=i.likes.length%> likes</span>
-                <%}%>
+            <span id="like<%=i._id%>"> <%=i.likes.length%> likes</span>
+            <%}%>
             <!-- </form> -->
             <p>
                 <%if(i.caption.length === 0){%>
-                <span></span>
-                <%} else {%>
-                <strong><%= i.user %>: </strong><%= i.caption %>
-                <%}%>
+            <span></span>
+            <%} else {%>
+            <strong><%= i.user %>: </strong><%= i.caption %>
+            <%}%>
             </p>
                 <% i.comments.forEach(function(c){%>
-                <span class="comment">
-                    <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
-                    <span>
-                        <%if(c.user === user.userName){%>
-                        <!-- <form action="/likes/<%= i._id %>/comments/<%= c._id %>?_method=DELETE" method="POST"> -->
-                            <input class="cmntdelete btn btn-outline-danger btn-sm" style="margin-top: 3px;" image-id="<%=i._id%>" comment-id="<%=c._id%>" type="submit" value="Delete">
-                        <!-- </form> -->
-                        <%}%>
+            <span class="comment">
+                <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
+                <span>
+                    <%if(c.user === user.userName){%>
+                    <input class="cmntdelete btn btn-outline-danger btn-sm" style="margin-top: 3px;"
+                        image-id="<%=i._id%>" comment-id="<%=c._id%>" type="submit" value="Delete">
+                    <%}%>
                     </span>
                 </span>
                 <% });%>
-                <!-- <form action="/likes/comments/<%= i._id %>" method="POST"> -->
                     <div class="input-group">
-                        <input name="comment"  class="<%=i._id%> form-control" placeholder="comment..." aria-label="With textarea"
-                            autocomplete="off">
+                        <input name="comment" class="<%=i._id%> form-control" placeholder="comment..."
+                            aria-label="With textarea" autocomplete="off">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-primary commentsubmit"  type="submit" data-id="<%= i._id %>">&#10000;</button>
+                            <button class="btn btn-outline-primary commentsubmit" type="submit"
+                                data-id="<%= i._id %>">&#10000;</button>
                         </div>
                     </div>
-                <!-- </form> -->
         </div>
     </div>
     <% }); %>

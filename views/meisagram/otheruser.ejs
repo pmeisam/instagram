@@ -3,7 +3,7 @@
     <div class="profile">
         <img class="profilepic" src="<%=user.avatar%>">
 
-        <div style="color: white;">
+        <div>
             <p>Username: <%= user.userName %></p>
         </div>
     </div>
@@ -25,13 +25,13 @@
                     <button type="submit" class="likebtn btn btn-danger btn-sm" data-id="<%=p._id%>">&#10084;</button>
                     <% }%>
                     <%if( p.likes.length === 0 ) {%>
-                    <span></span>
+                    <span id="like<%=p._id%>"></span>
                     <%}%>
                     <%if( p.likes.length === 1 ){ %>
-                    <span> <%=p.likes.length%> like</span>
+                    <span id="like<%=p._id%>"> <%=p.likes.length%> like</span>
                     <%}%>
                     <%if( p.likes.length > 1 ) {%>
-                    <span> <%=p.likes.length%> likes</span>
+                    <span id="like<%=p._id%>"> <%=p.likes.length%> likes</span>
                     <%}%>
                     <!-- <span><%= p.likes.length %> like(s)</span> -->
                 <!-- </form> -->

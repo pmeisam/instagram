@@ -83,7 +83,7 @@ function addLike(req, res) {
                     }
                 }
                 image.save().then(() => {
-                    res.json({ success: true });
+                    res.json({ success: true, likes: image.likes.length, like: false });
                 })
                     .catch(err => {
                         res.status.json({ err: err });
@@ -95,7 +95,7 @@ function addLike(req, res) {
                 image.save();
                 // user.notification.push(`${req.user.userName} liked your photo`)
                 user.save().then(() => {
-                    res.json({ success: true });
+                    res.json({ success: true, likes: image.likes.length, like: true });
                 }).catch(err => {
                     res.status.json({ err: err });
                 });
