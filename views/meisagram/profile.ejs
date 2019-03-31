@@ -1,96 +1,132 @@
 <%-include('../partials/header')%>
 <div class="container">
-    <div class="profile">
-        <img class="profilepic" src="<%=user.avatar%>">
-        
+  <div class="profile">
+    <img class="profilepic" src="<%=user.avatar%>" />
+
+    <div>
+      <p>Username: <%= user.userName %></p>
+      <p>E-mail: <%= user.email %></p>
+      <a
+        href="/editprofile/<%=user._id%>"
+        class="btn btn-outline-warning btn-sm"
+        >Profile Settings</a
+      >
+    </div>
+  </div>
+  <hr />
+
+  <%user.photos.forEach(function(p){%>
+  <div class="posts">
+    <div class="pstinside">
+      <p>
+        <img class="profileimg" src="<%=user.avatar%>" />
+        <%=user.userName%>
+      </p>
+      <img class="postimage" src="<%=p.url%>" />
+      <div style="display: flex; justify-content: space-between;">
+        <!-- <form action="/profile/<%= p._id %>" method="POST"> -->
         <div>
-            <p>Username: <%= user.userName %></p>
-            <p>E-mail: <%= user.email %></p>
-            <a href="/editprofile/<%=user._id%>" class="btn btn-outline-secondary btn-sm">Profile Settings</a>
+          <%if( !p.likes.includes(user.email)){%>
+          <button
+            type="submit"
+            class="likebtn btn btn-outline-danger btn-sm"
+            data-id="<%=p._id%>"
+          >
+            &#10084;
+          </button>
+          <% }else{%>
+          <button
+            type="submit"
+            class="likebtn btn btn-danger btn-sm"
+            data-id="<%=p._id%>"
+          >
+            &#10084;
+          </button>
+          <% }%> <%if( p.likes.length === 0 ) {%>
+          <span id="like<%=p._id%>"></span>
+          <%}%> <%if( p.likes.length === 1 ){ %>
+          <span id="like<%=p._id%>"> <%=p.likes.length%> like</span>
+          <%}%> <%if( p.likes.length > 1 ) {%>
+          <span id="like<%=p._id%>"> <%=p.likes.length%> likes</span>
+          <%}%>
+          <!-- <span><%= p.likes.length %> like(s)</span> -->
+          <!-- </form> -->
         </div>
-    </div>
-    <hr>
-
-    <%user.photos.forEach(function(p){%>
-    <div class="posts">
-        <div class="pstinside">
-            <p>
-                <img class="profileimg" src="<%=user.avatar%>">
-                <%=user.userName%>
-            </p>
-            <img class="postimage" src="<%=p.url%>">
-            <div style="display: flex; justify-content: space-between;">
-                <!-- <form action="/profile/<%= p._id %>" method="POST"> -->
-                    <div>
-                    <%if( !p.likes.includes(user.email)){%>
-                    <button type="submit" class="likebtn btn btn-outline-danger btn-sm" data-id="<%=p._id%>">&#10084;</button>
-               <% }else{%>
-                    <button type="submit" class="likebtn btn btn-danger btn-sm" data-id="<%=p._id%>">&#10084;</button>
-                   <% }%>
-                    <%if( p.likes.length === 0 ) {%>
-                    <span id="like<%=p._id%>"></span>
-                    <%}%>
-                    <%if( p.likes.length === 1 ){ %>
-                    <span id="like<%=p._id%>"> <%=p.likes.length%> like</span>
-                    <%}%>
-                    <%if( p.likes.length > 1 ) {%>
-                    <span id="like<%=p._id%>"> <%=p.likes.length%> likes</span>
-                    <%}%>
-                    <!-- <span><%= p.likes.length %> like(s)</span> -->
-                <!-- </form> -->
-            </div>
-                <div class="btn-group dropleft" style="height: 30px; margin-top: 10px;">
-                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenu2"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Edit
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <form action="/profile/caption/<%=p._id%>?_method=PUT" method="POST">
-                            <textarea name="caption" placeholder="caption..."></textarea>
-                            <button class="dropdown-item" type="submit">Edit Caption</button>
-                        </form>
-                        <form action="/profile/image/<%=p._id%>?_method=DELETE" method="POST">
-                            <button class="dropdown-item" type="submit">Delete Post</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <p>
-                <%if(p.caption.length === 0){%>
-                <span></span>
-                <%} else {%>
-                <strong><%= user.userName %>: </strong><%= p.caption %>
-                <%}%>
-            </p>
-            <% p.comments.forEach(function(c){%>
-
-            <span class="comment">
-                <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
-                <span>
-                    <!-- <form action="/profile/<%= p._id %>/comments/<%= c._id %>?_method=DELETE" method="POST"> -->
-                        <input type="submit" image-id="<%=p._id%>" cmnt-id="<%=c._id%>" class="inprofilecmntdlt btn btn-outline-danger btn-sm" value="Delete">
-                    <!-- </form> -->
-                </span>
-            </span>
-            <% });%>
-
-
-            <!-- <form action="/profile/comments/<%= p._id %>" method="POST"> -->
-                <div class="input-group">
-                    <input name="comment"  class="<%= p._id %> form-control" autocomplete="off" placeholder="comment..."
-                        aria-label="With textarea">
-                    <div class="input-group-prepend">
-                        <button class="commentsubmit btn btn-outline-primary" type="submit" data-id="<%= p._id %>">&#10000;</button>
-                    </div>
-                </div>
-            <!-- </form> -->
-
+        <div class="btn-group dropleft" style="height: 30px; margin-top: 10px;">
+          <button
+            class="btn btn-outline-secondary btn-sm dropdown-toggle"
+            type="button"
+            id="dropdownMenu2"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Edit
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <form
+              action="/profile/caption/<%=p._id%>?_method=PUT"
+              method="POST"
+            >
+              <textarea name="caption" placeholder="caption..."></textarea>
+              <button class="dropdown-item" type="submit">Edit Caption</button>
+            </form>
+            <form
+              action="/profile/image/<%=p._id%>?_method=DELETE"
+              method="POST"
+            >
+              <button class="dropdown-item" type="submit">Delete Post</button>
+            </form>
+          </div>
         </div>
-    </div>
-    <%})%>
+      </div>
+      <p>
+        <%if(p.caption.length === 0){%>
+        <span></span>
+        <%} else {%>
+        <strong><%= user.userName %>: </strong><%= p.caption %> <%}%>
+      </p>
+      <% p.comments.forEach(function(c){%>
 
+      <span class="comment">
+        <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
+        <span>
+          <!-- <form action="/profile/<%= p._id %>/comments/<%= c._id %>?_method=DELETE" method="POST"> -->
+          <input
+            type="submit"
+            image-id="<%=p._id%>"
+            cmnt-id="<%=c._id%>"
+            class="inprofilecmntdlt btn btn-outline-danger btn-sm"
+            value="Delete"
+          />
+          <!-- </form> -->
+        </span>
+      </span>
+      <% });%>
+
+      <!-- <form action="/profile/comments/<%= p._id %>" method="POST"> -->
+      <div class="input-group">
+        <input
+          name="comment"
+          class="<%= p._id %> form-control"
+          autocomplete="off"
+          placeholder="comment..."
+          aria-label="With textarea"
+        />
+        <div class="input-group-prepend">
+          <button
+            class="commentsubmit btn btn-outline-primary"
+            type="submit"
+            data-id="<%= p._id %>"
+          >
+            <i class="fas fa-comment"></i>
+          </button>
+        </div>
+      </div>
+      <!-- </form> -->
+    </div>
+  </div>
+  <%})%>
 </div>
-
-
 
 <%-include('../partials/footer')%>

@@ -1,57 +1,81 @@
 <%-include('../partials/header')%>
 <div class="container">
-    <%image.reverse().forEach(function(i){%>
-    <div class="posts">
-        <div class="pstinside">
-            <p>
-                <img class="profileimg" src="<%= i.avatar %>">
-                <a href="/profile/user/<%=i.adrs%>"><%=i.user%></a>
-            </p>
-            <img class="postimage" src="<%=i.url %>">
-            <!-- <form action="/likes/<%= i._id %>" method="POST"> -->
-            <% if ( i.likes.includes( user.email ) ){ %>
-            <button class="likebtn btn btn-danger btn-sm" type="submit" data-id="<%= i._id %>">&#9829;</button>
-            <%  }else{ %>
-            <button class="likebtn btn btn-outline-danger btn-sm" type="submit" data-id="<%= i._id %>">&#9829;</button>
-            <%}%>
-                <%if( i.likes.length === 0 ) {%>
-            <span id="like<%=i._id%>"></span>
-            <%}%>
-                <%if( i.likes.length === 1 ){ %>
-            <span id="like<%=i._id%>"> <%=i.likes.length%> like</span>
-            <%}%>
-                <%if( i.likes.length > 1 ) {%>
-            <span id="like<%=i._id%>"> <%=i.likes.length%> likes</span>
-            <%}%>
-            <!-- </form> -->
-            <p>
-                <%if(i.caption.length === 0){%>
-            <span></span>
-            <%} else {%>
-            <strong><%= i.user %>: </strong><%= i.caption %>
-            <%}%>
-            </p>
-                <% i.comments.forEach(function(c){%>
-            <span class="comment">
-                <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
-                <span>
-                    <%if(c.user === user.userName){%>
-                    <input class="cmntdelete btn btn-outline-danger btn-sm" style="margin-top: 3px;"
-                        image-id="<%=i._id%>" comment-id="<%=c._id%>" type="submit" value="Delete">
-                    <%}%>
-                    </span>
-                </span>
-                <% });%>
-                    <div class="input-group">
-                        <input name="comment" class="<%=i._id%> form-control" placeholder="comment..."
-                            aria-label="With textarea" autocomplete="off">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-primary commentsubmit" type="submit"
-                                data-id="<%= i._id %>">&#10000;</button>
-                        </div>
-                    </div>
+  <%image.reverse().forEach(function(i){%>
+  <div class="posts">
+    <div class="pstinside">
+      <p>
+        <img class="profileimg" src="<%= i.avatar %>" />
+        <a class="profileName" href="/profile/user/<%=i.adrs%>"><%=i.user%></a>
+      </p>
+      <img class="postimage" src="<%=i.url %>" />
+      <!-- <form action="/likes/<%= i._id %>" method="POST"> -->
+      <% if ( i.likes.includes( user.email ) ){ %>
+      <button
+        class="likebtn btn btn-danger btn-sm"
+        type="submit"
+        data-id="<%= i._id %>"
+      >
+        &#10084;
+      </button>
+      <% }else{ %>
+      <button
+        class="likebtn btn btn-outline-danger btn-sm"
+        type="submit"
+        data-id="<%= i._id %>"
+      >
+        &#10084;
+      </button>
+      <%}%> <%if( i.likes.length === 0 ) {%>
+      <span id="like<%=i._id%>"></span>
+      <%}%> <%if( i.likes.length === 1 ){ %>
+      <span id="like<%=i._id%>"> <%=i.likes.length%> like</span>
+      <%}%> <%if( i.likes.length > 1 ) {%>
+      <span id="like<%=i._id%>"> <%=i.likes.length%> likes</span>
+      <%}%>
+      <!-- </form> -->
+      <p>
+        <%if(i.caption.length === 0){%>
+        <span></span>
+        <%} else {%>
+        <strong><%= i.user %>: </strong><%= i.caption %> <%}%>
+      </p>
+      <% i.comments.forEach(function(c){%>
+      <span class="comment">
+        <span class="cm"><strong><%= c.user %>:</strong> <%= c.comment %></span>
+        <span>
+          <%if(c.user === user.userName){%>
+          <input
+            class="cmntdelete btn btn-outline-danger btn-sm"
+            style="margin-top: 3px;"
+            image-id="<%=i._id%>"
+            comment-id="<%=c._id%>"
+            type="submit"
+            value="Delete"
+          />
+          <%}%>
+        </span>
+      </span>
+      <% });%>
+      <div class="input-group">
+        <input
+          name="comment"
+          class="<%=i._id%> form-control"
+          placeholder="comment..."
+          aria-label="With textarea"
+          autocomplete="off"
+        />
+        <div class="input-group-prepend">
+          <button
+            class="btn btn-outline-primary commentsubmit"
+            type="submit"
+            data-id="<%= i._id %>"
+          >
+          <i class="fas fa-comment"></i>
+          </button>
         </div>
+      </div>
     </div>
-    <% }); %>
+  </div>
+  <% }); %>
 </div>
 <%-include('../partials/footer')%>

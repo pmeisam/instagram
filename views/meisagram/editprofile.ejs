@@ -1,28 +1,55 @@
 <%-include('../partials/header')%>
 
 <div class="container uploadbar">
-    <form action="/editprofile/update/<%=user._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
-        <div style="margin-bottom: 20px;" class="custom-file">
-            <input type="file" name='image' class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
-            <label class="custom-file-label" for="inputGroupFile03">Upload Profile Picture</label>
-            
-        </div>
-        <div class="input-group mb-3">
-            <input type="text" name="userName" class="form-control" placeholder="Profile Username" aria-label="Recipient's username"
-                aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="submit" id="button-addon2">Submit</button>
-            </div>
-        </div>
-    </form>
-    
+  <form
+    action="/editprofile/update/<%=user._id%>?_method=PUT"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div style="margin-bottom: 20px;" class="custom-file">
+      <input
+        type="file"
+        name="image"
+        class="custom-file-input"
+        id="inputGroupFile03"
+        aria-describedby="inputGroupFileAddon03"
+      />
+      <label class="custom-file-label" for="inputGroupFile03"
+        >Upload Profile Picture</label
+      >
+    </div>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        name="userName"
+        class="form-control"
+        placeholder="Profile Username"
+        aria-label="Recipient's username"
+        aria-describedby="button-addon2"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-warning"
+          type="submit"
+          id="button-addon2"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
 </div>
 
 <footer>
-        <p style="color: white;">In case you don't like our app you can delete your profile.</p>
-        <form action="/editprofile/deleteuser/<%=user._id%>?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-outline-danger">Delete Profile</button>        
-        </form>
+  <p style="color: white;">
+    In case you don't like our app you can delete your profile.
+  </p>
+  <form
+    action="/editprofile/deleteuser/<%=user._id%>?_method=DELETE"
+    method="POST"
+  >
+    <button type="submit" class="btn btn-outline-danger">Delete Profile</button>
+  </form>
 </footer>
 
 <%-include('../partials/footer')%>
